@@ -3,152 +3,329 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Navigation</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.7;
-            color: #1a202c;
-            background: #f8faf8;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .header {
-            margin-bottom: 3rem;
-        }
-
-        .title {
-            font-size: 3rem;
-            font-weight: 700;
-            color: #1a5f3f;
-            margin-bottom: 1rem;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: #4a5568;
-            margin-bottom: 2rem;
-        }
-
-        .page-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .page-card {
-            background: white;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            text-decoration: none;
-            border: 1px solid #e2e8f0;
-        }
-
-        .page-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 25px rgba(45, 122, 87, 0.15);
-            border-color: #2d7a57;
-        }
-
-        .page-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #1a5f3f;
-            margin-bottom: 0.5rem;
-        }
-
-        .page-description {
-            color: #4a5568;
-            font-size: 0.95rem;
-        }
-
-        @media (max-width: 768px) {
-            .title {
-                font-size: 2.5rem;
-            }
-            
-            .container {
-                padding: 1.5rem;
-            }
-            
-            .page-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Collective Intelligence Consulting</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1 class="title">Site Navigation</h1>
-            <p class="subtitle">Choose a page to visit</p>
-        </div>
-
-        <div class="page-grid">
-            <a href="ai_consulting_website.html" class="page-card">
-                <h2 class="page-title">AI Consulting Website</h2>
-                <p class="page-description">Main consulting website showcasing AI services and solutions</p>
-            </a>
-
-            <a href="ai_chat_v4.html" class="page-card">
-                <h2 class="page-title">AI Chat v4</h2>
-                <p class="page-description">Latest version of the AI chat interface</p>
-            </a>
-
-            <a href="ai_chat_v4_test.html" class="page-card">
-                <h2 class="page-title">AI Chat v4 Test</h2>
-                <p class="page-description">Test version of AI Chat v4 for development and debugging</p>
-            </a>
-
-            <a href="ai_chat_v3.html" class="page-card">
-                <h2 class="page-title">AI Chat v3</h2>
-                <p class="page-description">Previous version of the AI chat interface</p>
-            </a>
-
-            <a href="ai_chat_v3_test.html" class="page-card">
-                <h2 class="page-title">AI Chat v3 Test</h2>
-                <p class="page-description">Test version of AI Chat v3 for development and debugging</p>
-            </a>
-
-            <a href="ai_chat_v3b.html" class="page-card">
-                <h2 class="page-title">AI Chat v3b - Zola Style</h2>
-                <p class="page-description">Clean, modern chat interface inspired by Zola.chat design with PromptKit styling</p>
-            </a>
-
-            <a href="ai_chat_v3c.html" class="page-card">
-                <h2 class="page-title">AI Chat v3c - PromptKit</h2>
-                <p class="page-description">AI Agent chat interface built with official PromptKit library components</p>
-            </a>
-
-            <a href="ai_chat_v3d.html" class="page-card">
-                <h2 class="page-title">AI Chat v3d - Zola Inspired</h2>
-                <p class="page-description">Clean, minimal chat interface built from scratch with PromptKit design principles</p>
-            </a>
-
-            <a href="https://monumental-manatee-1639f2.netlify.app/" class="page-card" target="_blank">
-                <h2 class="page-title">AI & Purpose Documentation</h2>
-                <p class="page-description">Values-first technology documentation for purpose-driven organizations</p>
-            </a>
-        </div>
+    <div class="hero-background-effect">
+        <div class="aurora-orb aurora-orb1"></div>
+        <div class="aurora-orb aurora-orb2"></div>
+        <div class="aurora-orb aurora-orb3"></div>
+        <div class="aurora-orb aurora-orb4"></div>
+        <div class="aurora-orb aurora-orb5"></div>
     </div>
+    <header>
+        <nav class="container">
+            <div class="nav">
+                <div class="logo">Collective Intelligence</div>
+                <div class="nav-links">
+                    <a href="#philosophy" class="nav-link" data-translate="nav-why">Why We Exist</a>
+                    <a href="#services" class="nav-link" data-translate="nav-what">What We Do</a>
+                    <a href="#process" class="nav-link" data-translate="nav-how">How We Work</a>
+                    <div class="language-switcher">
+                        <button class="lang-btn active" onclick="switchLanguage('en')" id="lang-en">EN</button>
+                        <button class="lang-btn" onclick="switchLanguage('es')" id="lang-es">ES</button>
+                    </div>
+                    <a href="ai_chat_page.html" class="contact-link" data-translate="nav-cta">Get Started</a>
+                </div>
+                <button class="mobile-menu-button" onclick="toggleMobileMenu()">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="mobile-menu" id="mobile-menu">
+                <a href="#philosophy" data-translate="nav-why">Why We Exist</a>
+                <a href="#services" data-translate="nav-what">What We Do</a>
+                <a href="#process" data-translate="nav-how">How We Work</a>
+                <div style="padding: 0.5rem 2rem;">
+                    <span style="font-size: 0.85rem; color: #6b7280;">Language:</span>
+                    <button class="lang-btn active" onclick="switchLanguage('en')" id="mobile-lang-en" style="margin-left: 0.5rem;">EN</button>
+                    <button class="lang-btn" onclick="switchLanguage('es')" id="mobile-lang-es">ES</button>
+                </div>
+                <a href="ai_chat_page.html" data-translate="nav-cta">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 data-translate="hero-title">AI That Works With Your Team, Not Against Them</h1>
+                <p class="subtitle" data-translate="hero-subtitle">We help purpose-driven organizations implement AI solutions that enhance human capabilities while preserving what makes your work meaningful.</p>
+                <a href="ai_chat_page.html" class="hero-cta" data-translate="hero-cta">Start a Conversation</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="philosophy" class="section philosophy">
+        <div class="container">
+            <div class="philosophy-header">
+                <span class="section-tag" data-translate="philosophy-tag">Our Vision</span>
+                <h2 class="section-title" data-translate="philosophy-title">Why We Exist</h2>
+                <p class="section-subtitle" data-translate="philosophy-subtitle">We're building a future where technology enhances human potential, not replaces it.</p>
+            </div>
+            <div class="philosophy-content">
+                <div class="philosophy-card belief">
+                    <div class="card-decoration"></div>
+                    <h3 data-translate="belief-title">Our Belief</h3>
+                    <p data-translate="belief-p1">As AI handles routine tasks, organizations face a choice: optimize for speed at the cost of human purpose, or evolve toward systems that honor both capability and meaning.</p>
+                    <p data-translate="belief-p2">We believe the future belongs to organizations that embrace distributed decision-making and authentic contribution—where people bring their full potential to work in service of shared purpose.</p>
+                </div>
+                
+                <div class="philosophy-card vision">
+                    <div class="card-decoration"></div>
+                    <h3 data-translate="transformation-title">The Transformation We're Part Of</h3>
+                    <p data-translate="transformation-p1">We're witnessing a shift toward purposeful work, where individual development and collective impact become inseparable. As AI automates execution, the work that matters becomes increasingly human-centered.</p>
+                    <p data-translate="transformation-p2">When people align with deeper purpose and combine wisdom with technology, they create organizations that serve all stakeholders while remaining competitive and innovative.</p>
+                </div>
+            </div>
+            <div class="philosophy-decoration">
+                <div class="decoration-circle"></div>
+                <div class="decoration-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section value-shift">
+        <div class="container">
+            <div class="value-shift-header">
+                <span class="section-tag" data-translate="value-tag">Value Creation</span>
+                <h2 class="section-title" data-translate="value-title">The Changing Rules of Value</h2>
+                <p class="section-subtitle" data-translate="value-subtitle">As AI handles more routine work, economic value is shifting from speed of execution to quality of insight, strategy, and human judgment.</p>
+            </div>
+            
+            <div class="value-comparison">
+                <div class="value-card trap-card">
+                    <div class="card-decoration"></div>
+                    <div class="value-number">01</div>
+                    <h3 data-translate="trap-title">The Common Trap</h3>
+                    <p data-translate="trap-desc">Most organizations use AI as a faster tool for existing work. This creates temporary gains but leads to a race where everyone has the same advantages.</p>
+                    <ul class="value-list">
+                        <li>
+                            <div class="list-icon"></div>
+                            <span data-translate="trap-point1">Focus on doing the same things faster</span>
+                        </li>
+                        <li>
+                            <div class="list-icon"></div>
+                            <span data-translate="trap-point2">Temporary productivity gains</span>
+                        </li>
+                        <li>
+                            <div class="list-icon"></div>
+                            <span data-translate="trap-point3">Commoditization as competitors catch up</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="value-card wise-card">
+                    <div class="card-decoration"></div>
+                    <div class="value-number">02</div>
+                    <h3 data-translate="wise-title">A Wiser Path</h3>
+                    <p data-translate="wise-desc">We help you discover new ways to create value by enhancing human creativity, judgment, and collaboration—capabilities that become more valuable as AI spreads.</p>
+                    <ul class="value-list">
+                        <li>
+                            <div class="list-icon"></div>
+                            <span data-translate="wise-point1">Reimagine workflows and value creation</span>
+                        </li>
+                        <li>
+                            <div class="list-icon"></div>
+                            <span data-translate="wise-point2">Sustainable competitive advantages</span>
+                        </li>
+                        <li>
+                            <div class="list-icon"></div>
+                            <span data-translate="wise-point3">Meaningful work that AI can't replicate</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="value-decoration">
+                <div class="value-line"></div>
+                <div class="value-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section services">
+        <div class="container">
+            <div class="services-header">
+                <span class="section-tag" data-translate="services-tag">Our Services</span>
+                <h2 class="section-title" data-translate="services-title">What We Do</h2>
+                <p class="section-subtitle" data-translate="services-subtitle">We provide practical guidance and hands-on support to integrate AI in ways that align with your values and amplify your team's potential.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <div class="service-content">
+                        <h3 data-translate="service1-title">AI Strategy & Planning</h3>
+                        <p data-translate="service1-desc">We assess your current processes, identify where AI can help most, and create a clear roadmap for implementation that aligns with your organizational values.</p>
+                    </div>
+                    <div class="service-decoration"></div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <div class="service-content">
+                        <h3 data-translate="service2-title">Implementation & Training</h3>
+                        <p data-translate="service2-desc">We build and deploy AI tools that integrate seamlessly with your existing workflows, then train your team to use them effectively and confidently.</p>
+                    </div>
+                    <div class="service-decoration"></div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <div class="service-content">
+                        <h3 data-translate="service3-title">Human-AI Collaboration</h3>
+                        <p data-translate="service3-desc">We help your team develop the skills to work alongside AI—maintaining critical thinking, creativity, and the human judgment that AI can't replace.</p>
+                    </div>
+                    <div class="service-decoration"></div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">04</div>
+                    <div class="service-content">
+                        <h3 data-translate="service4-title">Personal Purpose & Alignment</h3>
+                        <p data-translate="service4-desc">We guide individuals in discovering their deeper purpose and aligning their work with their values. This internal coherence reduces anxiety, prevents burnout, and creates the foundation for both personal fulfillment and meaningful organizational contribution.</p>
+                    </div>
+                    <div class="service-decoration"></div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">05</div>
+                    <div class="service-content">
+                        <h3 data-translate="service5-title">Process Automation</h3>
+                        <p data-translate="service5-desc">We automate routine tasks so your team can focus on strategic work, relationship building, and the complex problem-solving that drives your mission forward.</p>
+                    </div>
+                    <div class="service-decoration"></div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-number">06</div>
+                    <div class="service-content">
+                        <h3 data-translate="service6-title">Ethical & Responsible AI</h3>
+                        <p data-translate="service6-desc">We provide guidance on implementing AI ethically, ensuring fairness, transparency, and data privacy are central to your technological evolution while maintaining alignment with your organizational values.</p>
+                    </div>
+                    <div class="service-decoration"></div>
+                </div>
+            </div>
+            <div class="services-decoration">
+                <div class="services-circle"></div>
+                <div class="services-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section who-we-serve">
+        <div class="container">
+            <div class="clients-header">
+                <span class="section-tag" data-translate="clients-tag">Our Partners</span>
+                <h2 class="section-title" data-translate="clients-title">Who We Work With</h2>
+                <p class="section-subtitle" data-translate="clients-subtitle">We partner with organizations that prioritize both innovation and human flourishing.</p>
+            </div>
+            <div class="client-types">
+                <div class="client-card">
+                    <div class="client-content">
+                        <h4 data-translate="client1-title">Purpose-Driven Organizations</h4>
+                        <p data-translate="client1-desc">Companies that prioritize mission alongside profit, seeking to create positive impact while remaining competitive.</p>
+                    </div>
+                    <div class="client-decoration"></div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-content">
+                        <h4 data-translate="client2-title">Cooperatives & B-Corps</h4>
+                        <p data-translate="client2-desc">Organizations already committed to shared ownership, stakeholder governance, and social responsibility.</p>
+                    </div>
+                    <div class="client-decoration"></div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-content">
+                        <h4 data-translate="client3-title">Non-Profits & Foundations</h4>
+                        <p data-translate="client3-desc">Mission-driven organizations looking to amplify their impact through thoughtful technology adoption.</p>
+                    </div>
+                    <div class="client-decoration"></div>
+                </div>
+                
+                <div class="client-card">
+                    <div class="client-content">
+                        <h4 data-translate="client4-title">Educational Institutions</h4>
+                        <p data-translate="client4-desc">Schools and research organizations focused on human development and conscious culture building.</p>
+                    </div>
+                    <div class="client-decoration"></div>
+                </div>
+            </div>
+            <div class="clients-decoration">
+                <div class="clients-circle"></div>
+                <div class="clients-dots"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section process">
+        <div class="container">
+            <h2 class="section-title" data-translate="process-title">How We Work</h2>
+            <p class="section-subtitle" data-translate="process-subtitle">Our approach emphasizes partnership, understanding, and sustainable transformation.</p>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4 data-translate="step1-title">Listen & Assess</h4>
+                    <p data-translate="step1-desc">We start by understanding your organization, goals, and concerns about AI implementation.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4 data-translate="step2-title">Design & Build</h4>
+                    <p data-translate="step2-desc">We create custom AI solutions that fit your specific needs and organizational culture.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4 data-translate="step3-title">Train & Support</h4>
+                    <p data-translate="step3-desc">We ensure your team is confident and capable, with ongoing support as you grow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section approach" id="approach">
+        <div class="container">
+            <div class="approach-content">
+                <div class="approach-header">
+                    <span class="section-tag" data-translate="approach-tag">Our Approach</span>
+                    <h2 class="section-title" data-translate="approach-title">How We Work</h2>
+                    <p class="section-subtitle" data-translate="approach-subtitle">Our proven methodology ensures a smooth and effective transformation process.</p>
+                </div>
+                <div class="approach-steps">
+                    <div class="approach-step">
+                        <div class="step-number">01</div>
+                        <h3 class="step-title" data-translate="step1-title">Initial Assessment</h3>
+                        <p class="step-description" data-translate="step1-description">We begin with a comprehensive analysis of your current state and goals.</p>
+                    </div>
+                    <div class="approach-step">
+                        <div class="step-number">02</div>
+                        <h3 class="step-title" data-translate="step2-title">Strategy Development</h3>
+                        <p class="step-description" data-translate="step2-description">Together, we create a tailored roadmap for your transformation.</p>
+                    </div>
+                    <div class="approach-step">
+                        <div class="step-number">03</div>
+                        <h3 class="step-title" data-translate="step3-title">Implementation</h3>
+                        <p class="step-description" data-translate="step3-description">We guide you through the execution of your transformation plan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p data-translate="footer-text">&copy; 2024 Collective Intelligence Consulting. Human-centered AI for purpose-driven organizations.</p>
+        </div>
+    </footer>
+
+    <div class="chat-widget" onclick="window.location.href='ai_chat_page.html'" data-translate="chat-widget">
+        💬 Chat Now
+    </div>
+
+    <script src="main.js"></script>
 </body>
 </html> 

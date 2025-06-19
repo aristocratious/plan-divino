@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site Navigation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1a202c;
+            background: #f8faf8;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 3rem;
+        }
+
+        .title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #1a5f3f;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #4a5568;
+            margin-bottom: 2rem;
+        }
+
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .page-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid #e2e8f0;
+        }
+
+        .page-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(45, 122, 87, 0.15);
+            border-color: #2d7a57;
+        }
+
+        .page-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #1a5f3f;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .page-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="title">Site Navigation</h1>
+            <p class="subtitle">Choose a page to visit</p>
+        </div>
+
+        <div class="page-grid">
+            <a href="ai_consulting_website.html" class="page-card">
+                <h2 class="page-title">AI Consulting Website</h2>
+                <p class="page-description">Main consulting website showcasing AI services and solutions</p>
+            </a>
+
+            <a href="ai_chat_v4.html" class="page-card">
+                <h2 class="page-title">AI Chat v4</h2>
+                <p class="page-description">Latest version of the AI chat interface</p>
+            </a>
+
+            <a href="ai_chat_v4_test.html" class="page-card">
+                <h2 class="page-title">AI Chat v4 Test</h2>
+                <p class="page-description">Test version of AI Chat v4 for development and debugging</p>
+            </a>
+
+            <a href="ai_chat_v3.html" class="page-card">
+                <h2 class="page-title">AI Chat v3</h2>
+                <p class="page-description">Previous version of the AI chat interface</p>
+            </a>
+
+            <a href="ai_chat_v3_test.html" class="page-card">
+                <h2 class="page-title">AI Chat v3 Test</h2>
+                <p class="page-description">Test version of AI Chat v3 for development and debugging</p>
+            </a>
+
+            <a href="ai_chat_v3b.html" class="page-card">
+                <h2 class="page-title">AI Chat v3b - Zola Style</h2>
+                <p class="page-description">Clean, modern chat interface inspired by Zola.chat design with PromptKit styling</p>
+            </a>
+
+            <a href="ai_chat_v3c.html" class="page-card">
+                <h2 class="page-title">AI Chat v3c - PromptKit</h2>
+                <p class="page-description">AI Agent chat interface built with official PromptKit library components</p>
+            </a>
+
+            <a href="ai_chat_v3d.html" class="page-card">
+                <h2 class="page-title">AI Chat v3d - Zola Inspired</h2>
+                <p class="page-description">Clean, minimal chat interface built from scratch with PromptKit design principles</p>
+            </a>
+
+            <a href="https://monumental-manatee-1639f2.netlify.app/" class="page-card" target="_blank">
+                <h2 class="page-title">AI & Purpose Documentation</h2>
+                <p class="page-description">Values-first technology documentation for purpose-driven organizations</p>
+            </a>
+        </div>
+    </div>
+</body>
+</html> 
