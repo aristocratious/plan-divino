@@ -1,0 +1,557 @@
+{
+    "nodes": [
+      {
+        "parameters": {
+          "assignments": {
+            "assignments": [
+              {
+                "id": "user-message",
+                "name": "userMessage",
+                "type": "string",
+                "value": "={{ $json.body.message || $json.body.chatInput || $json.body.text || 'Sin mensaje' }}"
+              },
+              {
+                "id": "session-id",
+                "name": "sessionId",
+                "type": "string",
+                "value": "={{ $json.body.sessionId || $json.body.userId || $json.headers['x-session-id'] || 'default-session' }}"
+              },
+              {
+                "id": "timestamp",
+                "name": "timestamp",
+                "type": "string",
+                "value": "={{ $now.format('yyyy-MM-dd HH:mm:ss') }}"
+              }
+            ]
+          },
+          "options": {}
+        },
+        "id": "25997c29-30ad-4cfc-9c09-6f4c6be0883f",
+        "name": "Extraer Datos de Entrada4",
+        "type": "n8n-nodes-base.set",
+        "typeVersion": 3.4,
+        "position": [
+          1960,
+          600
+        ]
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={{ {\n  \"success\": true,\n  \"response\": $json.output,\n  \"timestamp\": $now.format('yyyy-MM-dd HH:mm:ss'),\n  \"sessionId\": $('Extraer Datos de Entrada4').item.json.sessionId\n} }}",
+          "options": {
+            "responseHeaders": {
+              "entries": [
+                {
+                  "name": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "name": "Access-Control-Allow-Origin",
+                  "value": "*"
+                },
+                {
+                  "name": "Access-Control-Allow-Methods",
+                  "value": "GET, POST, OPTIONS"
+                },
+                {
+                  "name": "Access-Control-Allow-Headers",
+                  "value": "Content-Type, Authorization"
+                }
+              ]
+            }
+          }
+        },
+        "id": "fa162cd0-debc-4285-8853-98b94037cc66",
+        "name": "Respuesta Webhook2",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [
+          2640,
+          580
+        ]
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+        "typeVersion": 1.1,
+        "position": [
+          2800,
+          880
+        ],
+        "id": "19d6800c-f7c2-4cbb-a574-38d304227e0c",
+        "name": "Answer questions with a vector store"
+      },
+      {
+        "parameters": {
+          "pineconeIndex": {
+            "__rl": true,
+            "value": "flowise",
+            "mode": "list",
+            "cachedResultName": "flowise"
+          },
+          "options": {
+            "pineconeNamespace": "v3"
+          }
+        },
+        "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+        "typeVersion": 1.2,
+        "position": [
+          2680,
+          1120
+        ],
+        "id": "05c23dab-3640-478f-a64d-2fda92b6c675",
+        "name": "Pinecone Vector Store1",
+        "credentials": {
+          "pineconeApi": {
+            "id": "y5OYOWDsIuMhkG75",
+            "name": "PineconeApi account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+        "typeVersion": 1.2,
+        "position": [
+          2720,
+          1340
+        ],
+        "id": "c52dd214-e8cc-46b9-8eff-388687ca29ce",
+        "name": "Embeddings OpenAI",
+        "credentials": {
+          "openAiApi": {
+            "id": "ShuB8HXatvBBgQWJ",
+            "name": "n8n agente Pueblito"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "claude-sonnet-4-20250514",
+            "cachedResultName": "Claude 4 Sonnet"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+        "typeVersion": 1.3,
+        "position": [
+          2020,
+          960
+        ],
+        "id": "c3fa03bc-a2df-43be-bfb6-19c3a0076966",
+        "name": "Anthropic Chat Model",
+        "credentials": {
+          "anthropicApi": {
+            "id": "VAFngKvwe9KixO5C",
+            "name": "Anthropic account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "model": {
+            "__rl": true,
+            "mode": "list",
+            "value": "claude-sonnet-4-20250514",
+            "cachedResultName": "Claude 4 Sonnet"
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+        "typeVersion": 1.3,
+        "position": [
+          3060,
+          1040
+        ],
+        "id": "3000bda5-252a-483d-bb2f-ced7615c2c5a",
+        "name": "Anthropic Chat Model1",
+        "credentials": {
+          "anthropicApi": {
+            "id": "VAFngKvwe9KixO5C",
+            "name": "Anthropic account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "content": "# Namespace = v3"
+        },
+        "type": "n8n-nodes-base.stickyNote",
+        "position": [
+          2860,
+          1220
+        ],
+        "typeVersion": 1,
+        "id": "33697dbf-f4a6-45f6-9cfb-1b72f316d2ef",
+        "name": "Sticky Note"
+      },
+      {
+        "parameters": {},
+        "type": "@n8n/n8n-nodes-langchain.memoryZep",
+        "typeVersion": 1.3,
+        "position": [
+          2160,
+          960
+        ],
+        "id": "709a7b1b-afa6-476f-8672-3e2764d1de37",
+        "name": "Zep",
+        "credentials": {
+          "zepApi": {
+            "id": "RxjtsmMRYtVbvnkP",
+            "name": "Zep Api account"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "descriptionType": "manual",
+          "toolDescription": "Save contact information to Airtable. Use this tool when a prospect provides their contact details. Call with JSON object containing: {\\\"Name\\\": \\\"full name\\\", \\\"email\\\": \\\"email@domain.com\\\", \\\"Company\\\": \\\"company name\\\", \\\"Phone Number\\\": \\\"+1234567890\\\", \\\"Language\\\": \\\"English/Spanish/etc\\\", \\\"Notes\\\": \\\"brief summary of interests\\\"",
+          "operation": "create",
+          "base": {
+            "__rl": true,
+            "value": "appWCZQFintbdWwL8",
+            "mode": "list",
+            "cachedResultName": "agente-pre-start",
+            "cachedResultUrl": "https://airtable.com/appWCZQFintbdWwL8"
+          },
+          "table": {
+            "__rl": true,
+            "value": "tblfXIJ3biMRLqMX5",
+            "mode": "list",
+            "cachedResultName": "Table 1",
+            "cachedResultUrl": "https://airtable.com/appWCZQFintbdWwL8/tblfXIJ3biMRLqMX5"
+          },
+          "columns": {
+            "mappingMode": "defineBelow",
+            "value": {
+              "email": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('email', ``, 'string') }}",
+              "Company": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Company', ``, 'string') }}",
+              "Phone Number": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Phone_Number', ``, 'string') }}",
+              "Language": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Language', ``, 'string') }}",
+              "Notes": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Notes', ``, 'string') }}",
+              "Name": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Name', ``, 'string') }}"
+            },
+            "matchingColumns": [],
+            "schema": [
+              {
+                "id": "Name",
+                "displayName": "Name",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "email",
+                "displayName": "email",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "Company",
+                "displayName": "Company",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "Phone Number",
+                "displayName": "Phone Number",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "Language",
+                "displayName": "Language",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "Notes",
+                "displayName": "Notes",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": false,
+                "removed": false
+              },
+              {
+                "id": "Creation Date",
+                "displayName": "Creation Date",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": true,
+                "removed": false
+              },
+              {
+                "id": "Last modification",
+                "displayName": "Last modification",
+                "required": false,
+                "defaultMatch": false,
+                "canBeUsedToMatch": true,
+                "display": true,
+                "type": "string",
+                "readOnly": true,
+                "removed": false
+              }
+            ],
+            "attemptToConvertTypes": false,
+            "convertFieldsToString": false
+          },
+          "options": {}
+        },
+        "type": "@n8n/n8n-nodes-langchain.tool",
+        "typeVersion": 1.1,
+        "position": [
+          1900,
+          1480
+        ],
+        "id": "tool-1",
+        "name": "Save Contact Tool"
+      },
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "98e508da-b673-4b96-84e1-c2ca8b954e11",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [
+          1720,
+          600
+        ],
+        "id": "cb98a266-33a5-4a0d-bf55-8f5406618ce7",
+        "name": "Webhook",
+        "webhookId": "98e508da-b673-4b96-84e1-c2ca8b954e11"
+      },
+      {
+        "parameters": {},
+        "type": "n8n-nodes-base.executeWorkflowTrigger",
+        "typeVersion": 1.1,
+        "position": [
+          1620,
+          1320
+        ],
+        "id": "77e156a9-f2a5-483d-92ef-601c65a5c7c7",
+        "name": "When Executed by Another Workflow"
+      },
+      {
+        "parameters": {
+          "agent": "toolsAgent",
+          "promptType": "define",
+          "text": "={{ $json.userMessage }}",
+          "options": {
+            "systemMessage": "You are a tools agent that helps save contact information to Airtable. When given contact details, save them using the Airtable tool."
+          }
+        },
+        "id": "9fbcefbe-70cd-4f17-b2c5-668c71bf9e5f",
+        "name": "Tools Agent1",
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          1900,
+          1320
+        ]
+      },
+      {
+        "parameters": {
+          "agent": "conversationalAgent",
+          "promptType": "define",
+          "text": "={{ $json.userMessage }}",
+          "options": {
+            "systemMessage": "=# AI CONSULTATION ASSISTANT - COLLECTIVE INTELLIGENCE\n\n## IDENTITY AND PURPOSE\nYou are the conversational assistant for Collective Intelligence Consulting. Your goal is to explain, educate, and cultivate genuine interest in our services through thoughtful conversation about AI implementation, organizational development, and human-AI partnership. When prospects show strong interest, collect contact details (name, organization, email, phone) for follow-up, assuring them their information will be kept private.\n\n**CRITICAL INSTRUCTIONS:**\n- **Always respond in the same language as the user's input.** If they write in Spanish, respond in Spanish. If they write in English, respond in English, etc.\n- **Write in plain text only** - never use markdown formatting (no **bold**, bullets, headers, etc.)\n- **Have a natural conversation** - don't dump information or sound like documentation\n- **Lead with curiosity** about their situation before explaining our services\n\n## CORE PHILOSOPHY\n**\"AI That Amplifies Human Purpose\"**\nWe implement AI solutions that enhance human capabilities while preserving meaningful work. Our approach focuses on human-AI partnership - technology that augments rather than replaces human judgment, creativity, and authentic contribution.\n\n## MAIN SERVICES\n- **AI Strategy & Implementation**: Mission-aligned technology solutions with privacy-first, client-controlled systems\n- **Process Automation**: Smart automation that preserves human agency while eliminating routine work  \n- **Organizational Development**: Evolution toward self-managing, purpose-driven structures\n- **Personal Purpose Alignment**: Individual development that serves both personal fulfillment and organizational goals\n\n## KEY DIFFERENTIATORS\n- **Integration of individual and organizational development** - we address technology, structure, and human growth together\n- **Values-first technology implementation** - every AI choice evaluated through mission and values alignment\n- **Human-AI partnership philosophy** - technology serves human flourishing, never replaces human agency\n- **Holistic transformation** - technical, structural, cultural, and individual development simultaneously\n\n## ADDRESSING COMMON AI CONCERNS\n\n### Job Displacement Fears:\n- **Acknowledge directly**: \"That's a completely valid concern many people have\"\n- **Explain our approach**: \"We focus on AI that handles routine tasks so humans can do more strategic, creative, and meaningful work\"\n- **Provide examples**: \"AI processes data while humans build relationships, make ethical decisions, and solve complex problems\"\n- **Emphasize value increase**: \"As AI commoditizes routine work, uniquely human skills become MORE valuable\"\n\n### Other Common Concerns:\n- **Technology overwhelming capacity**: \"We implement gradually with continuous support and training\"\n- **AI compromising values**: \"Every technology decision is evaluated through your organizational mission and values\"\n- **Loss of human connection**: \"We preserve and enhance authentic human relationships and collaboration\"\n- **Privacy and control**: \"We build systems you control, with your data staying in your environment when possible\"\n\n## AVAILABLE TOOLS\n\n### Airtable Tool\n**Usage**: To save contact information and lead data to our CRM database\n**When to use**: When collecting contact details from prospects who show genuine interest\n**How to use**: Call the Airtable tool with this exact JSON format:\n```\n{\n  \"Name\": \"prospect's full name\",\n  \"email\": \"prospect@email.com\", \n  \"Company\": \"company/organization name\",\n  \"Phone Number\": \"phone number\",\n  \"Language\": \"English/Spanish/etc\",\n  \"Notes\": \"brief summary of interests/challenges\"\n}\n```\n**Process**: Always save contact information immediately after collection and confirm to the user that their information has been saved securely\n\n## KNOWLEDGE AND CONSULTING RULES\n\n### ✅ WHEN TO USE RAG:\n- Specific questions about our methodology, services, or technical approach\n- Requests for examples, case studies, or transformation stories\n- Questions about organizational development models or implementation processes\n- Technical details about AI systems, privacy, or integration\n- Questions about AI infrastructure benefits or implementation advantages\n<!-- - questions about ROI -->\n- Requests for specific outcomes or measurable results from AI implementation\n\n### ✅ BALANCE PROMPT vs RAG:\n- **Prompt provides**: Core philosophy, service overview, conversation guidance, concern handling\n- **RAG provides**: Detailed methodologies, specific examples, technical specifications, case studies\n- **Use RAG strategically** - pull specific relevant details, don't regurgitate entire sections\n- **Synthesize, don't copy** - blend RAG information into natural conversation\n\n### 🎯 CONSULTATIVE APPROACH:\n1. **Understand context**: Organization type, current challenges, AI experience\n2. **Values-first assessment**: How does this serve their mission?\n3. **Human-AI partnership design**: What should humans vs. AI handle?\n4. **Transformation readiness**: What support do they need for change?\n5. **Lead toward engagement**: Discovery process, pilot projects, or strategic consultation\n\n### 📋 USE CASE EXAMPLES:\n**Only reference examples found in RAG documentation**. Do not create or reference non-existent case studies. When relevant examples exist in the RAG, use them to illustrate concepts.\n\n## COMMUNICATION STYLE\n\n### NATURAL CONVERSATION PRINCIPLES:\n- **Write like a knowledgeable human consultant**, not a brochure or documentation\n- **Never use markdown formatting** (no bold, bullets, headers, etc.) - write in plain text\n- **Synthesize information naturally** - don't list or dump content from RAG\n- **Lead with curiosity about their situation** before explaining our services\n- **Keep responses concise** - aim for 1-5 sentences, then ask a question\n\n### POSITIONING:\n- **Use \"we\" and first person**: \"We help organizations...\", \"In our approach...\"\n- **Position as thoughtful partners**: \"We'd want to understand your context first\"\n- **Emphasize collaboration**: \"We design solutions together\"\n- **Show values alignment**: \"This could align with your mission by...\"\n\n### RESPONSE STRUCTURE:\n1. **Acknowledge what they shared and the deeper context** (not just the surface request)\n2. **Connect to their potential situation, human value, and purpose**\n3. **Use RAG information** as the knowledge base before synthesizing your naturally-sounding reply\n4. **Offer perspective based on our approach**\n5. **Ask specific follow-up questions** to understand context\n6. **When appropriate, suggest next steps** and collect contact information\n5. **Avoid information dumps** - save detailed explanations for when they ask specifically\n### CONTACT COLLECTION:\nWhen prospects show strong interest or ask about next steps:\n- \"I'd be happy to connect you with our team for a more detailed conversation\"\n- \"Could I get your contact information so we can follow up? We keep all information private\"\n- **Collect**: Name, Company/Organization, Email, Phone Number\n- **Immediately save to Airtable** with fields: name, email, company, phone_number, language (detected from conversation), notes (brief summary of their interests/challenges)\n- Confirm: \"I've saved your information securely and someone from our team will reach out shortly.\"\n- Be willing to continue the conversation even if they don't seem interested in giving contact details yet\n\n### CONTACT COLLECTION TRIGGERS:\n- When prospects ask \"How do we get started?\" or \"What would this look like for us?\"\n- After explaining 2-3 relevant services/approaches\n- When they share specific organizational challenges\n- After providing a relevant transformation story example\n- When they ask about timelines, investment, or implementation\n\n### CONTACT COLLECTION TECHNIQUES:\n- **Discovery Offer**: \"I'd love to connect you with our team for a brief discovery conversation to understand your specific context\"\n<!-- - **Resource Sharing**: \"I can have someone send you our organizational readiness assessment - what's the best email for that?\" -->\n<!-- - **Next Step Clarity**: \"The next step would be a 30-minute conversation with our team\" -->\n\n### TONE:\n- **Thoughtful and consultative** (not salesy)\n- **Human-centered** (acknowledge concerns about AI)\n- **Values-focused** (connect to mission and purpose)\n- **Collaborative** (we design solutions together)\n- **Humble about outcomes** (avoid guaranteeing specific results)\n\n## EXAMPLE RESPONSES:\n\n**❓ \"How can AI help automate our processes?\"**\n> \"That's a great question. I'm curious what kinds of processes are currently consuming too much of your team's time? We find that the most effective automation happens when we first understand what work energizes people versus what drains them, then design AI to handle the routine stuff so humans can focus on the strategic and creative work. What type of organization are you with?\"\n\n**❓ \"Will AI replace our employees?\"**\n> \"I completely understand that concern - it's one we hear frequently and it's totally valid. Our whole approach is actually designed around the opposite - we help AI enhance what people do rather than replace them. I'm curious, what type of work does your team find most meaningful right now? Often the fear comes from not knowing how to design the partnership between humans and AI in a way that preserves what matters most.\"\n\n**❓ \"How do you help with organizational development?\"**\n> \"We help organizations evolve toward structures that can support both human flourishing and effective AI integration. This often involves moving toward more distributed decision-making, authentic collaboration, and mission-driven operations.\n> \n> **Our approach integrates organizational development with AI implementation and individual purpose alignment - addressing all three together rather than treating them separately.**\n> \n> **How would you describe your current organizational culture, and what changes might help your team be more effective while staying true to your mission?**\"\n\n\n\n## KEY REMINDERS:\n- **Write in plain text only** - no markdown formatting, bullets, or bold text\n- **Synthesize RAG content** - don't copy-paste or list information\n- **Use conversational language** - \"I'm curious...\" \"That's interesting...\" \n- **Keep responses short** - 2-3 sentences plus a question to get closer to goal\n- **Only reference examples that exist in the RAG documentation**\n- **don't guarantee specific outcomes**\n- **Balance concern acknowledgment** with education about our human-centered approach\n- **Lead conversations toward discovery** of their context and needs\n- **Collect contact information** when prospects show genuine interest\n- **ALWAYS save contact details to Airtable immediately** when collected\n- **Emphasize privacy** when collecting contact details\n- **Position as collaborative partners** who design solutions together\n- **Avoid overconfident claims** about results or capabilities\n\n### CONVERSATION PROGRESSION EXAMPLE:\n1. **Understand Context** (1-3 exchanges): Organization type, current challenges, AI experience\n2. **Address Concerns** (1-2 exchanges): Handle fears, explain human-AI partnership\n3. **Share Relevant Examples** (1-2 exchanges): Use RAG transformation stories that match their context\n4. **Connect to Services** (1 exchange): Explain how our approach addresses their specific situation\n5. **Suggest Next Steps** (1 exchange): Offer discovery conversation and collect contact info\n\n### HIGH-CONVERSION RAG CONTENT:\n- **Transformation Stories**: Use when prospects share similar challenges\n- **Services Overview**: Reference when explaining how we address their specific needs\n- **Discovery Process**: Share when they're ready for next steps\n- **Technical Implementation**: Use for technically-minded prospects concerned about privacy/control\n- **AI Infrastructure Benefits**: Use when asked about implementation benefits or technical advantages\n<!-- - ROI walkthroughs -->\n\n### COMMON OBJECTIONS & EXAMPLE RESPONSES:\n\n**\"We're not ready for AI yet\"**\n- \"That's actually a great place to start. Our discovery process helps organizations understand their readiness and what preparation might be helpful.\"\n\n**\"This sounds expensive\"**\n- \"We offer different engagement models, including pilot projects to demonstrate value. What would be most helpful is understanding your specific situation first and I will do my best to explain the benefits.\"\n\n**\"We need to think about it\"**\n- \"Absolutely. Would it be helpful if I connected you with our team for a brief conversation to answer any specific questions that come up?\"\n\n### CREATING APPROPRIATE URGENCY:\n- \"AI transformation is happening whether organizations plan for it or not\"\n- \"The organizations that start thoughtfully now we believe will have significant advantages\"\n- \"Our discovery process helps organizations understand their readiness and next steps\"\n\n# Integration Benefits & Process\n\n## Why Integration Matters\n- Seamless workflow continuation\n- No disruption to existing processes\n- Gradual capability enhancement\n## Integration Advantages\n- Works with existing tools\n- Preserves current workflows\n- Enhances rather than replaces"
+          }
+        },
+        "id": "263e4854-c2d3-4bfd-9401-4d492cc1b62e",
+        "name": "Conversational Agent",
+        "type": "@n8n/n8n-nodes-langchain.agent",
+        "typeVersion": 1.7,
+        "position": [
+          2200,
+          580
+        ]
+      }
+    ],
+    "connections": {
+      "Extraer Datos de Entrada4": {
+        "main": [
+          [
+            {
+              "node": "Conversational Agent",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Answer questions with a vector store": {
+        "ai_tool": [
+          [
+            {
+              "node": "Conversational Agent",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Pinecone Vector Store1": {
+        "ai_vectorStore": [
+          [
+            {
+              "node": "Answer questions with a vector store",
+              "type": "ai_vectorStore",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Embeddings OpenAI": {
+        "ai_embedding": [
+          [
+            {
+              "node": "Pinecone Vector Store1",
+              "type": "ai_embedding",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Anthropic Chat Model": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Conversational Agent",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Anthropic Chat Model1": {
+        "ai_languageModel": [
+          [
+            {
+              "node": "Answer questions with a vector store",
+              "type": "ai_languageModel",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Zep": {
+        "ai_memory": [
+          [
+            {
+              "node": "Conversational Agent",
+              "type": "ai_memory",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Airtable1": {
+        "ai_tool": [
+          [
+            {
+              "node": "Tools Agent1",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Webhook": {
+        "main": [
+          [
+            {
+              "node": "Extraer Datos de Entrada4",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "When Executed by Another Workflow": {
+        "main": [
+          [
+            {
+              "node": "Tools Agent1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Conversational Agent": {
+        "main": [
+          [
+            {
+              "node": "Respuesta Webhook2",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ],
+        "ai_tool": [
+          [
+            {
+              "node": "Save Contact Tool",
+              "type": "ai_tool",
+              "index": 0
+            }
+          ]
+        ]
+      },
+      "Save Contact Tool": {
+        "main": [
+          [
+            {
+              "node": "Tools Agent1",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "pinData": {},
+    "meta": {
+      "instanceId": "11de788fc1cb67fd5868e35869a38ba72be495471d8b7072a2b1468627c3d6d4"
+    }
+  }
