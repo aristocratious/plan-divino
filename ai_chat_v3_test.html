@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Chat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .chat-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 700px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #2d7a57 0%, #1a5f3f 100%);
+            color: white;
+            padding: 20px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .back-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .header-info h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .status {
+            font-size: 12px;
+            opacity: 0.9;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .lang-btn.active {
+            background: rgba(255, 255, 255, 0.9);
+            color: #2d7a57;
+            border-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: #f8fafc;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .welcome-section {
+            text-align: center;
+            padding: 30px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 20px;
+        }
+
+        .welcome-section h2 {
+            color: #1a202c;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #4a5568;
+            font-size: 16px;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto 25px;
+        }
+
+        .suggestions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .suggestion {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: left;
+            font-size: 14px;
+            color: #4a5568;
+            line-height: 1.4;
+        }
+
+        .suggestion:hover {
+            border-color: #2d7a57;
+            background: #f0f9f4;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(45, 122, 87, 0.1);
+        }
+
+        .message {
+            display: flex;
+            margin-bottom: 15px;
+            animation: fadeInUp 0.3s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message.bot {
+            justify-content: flex-start;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 15px 18px;
+            border-radius: 18px;
+            font-size: 15px;
+            line-height: 1.5;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .message.user .message-content {
+            background: linear-gradient(135deg, #2d7a57 0%, #1a5f3f 100%);
+            color: white;
+            border-bottom-right-radius: 8px;
+            box-shadow: 0 2px 12px rgba(45, 122, 87, 0.3);
+        }
+
+        .message.bot .message-content {
+            background: white;
+            color: #2d3748;
+            border: 1px solid #e2e8f0;
+            border-bottom-left-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .typing-indicator {
+            display: none;
+            justify-content: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .typing-indicator .message-content {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 4px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #94a3b8;
+            border-radius: 50%;
+            animation: typing 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+        .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes typing {
+            0%, 80%, 100% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .chat-input-container {
+            padding: 20px;
+            background: white;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .input-wrapper {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 8px;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #2d7a57;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(45, 122, 87, 0.1);
+        }
+
+        .chat-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            padding: 10px 12px;
+            font-size: 15px;
+            line-height: 1.5;
+            resize: none;
+            outline: none;
+            min-height: 20px;
+            max-height: 120px;
+            font-family: inherit;
+            color: #2d3748;
+        }
+
+        .chat-input::placeholder {
+            color: #a0aec0;
+        }
+
+        .send-button {
+            background: linear-gradient(135deg, #2d7a57 0%, #1a5f3f 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            height: 44px;
+            box-shadow: 0 2px 8px rgba(45, 122, 87, 0.3);
+        }
+
+        .send-button:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(45, 122, 87, 0.4);
+        }
+
+        .send-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .send-button svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        .input-hint {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            font-size: 12px;
+            color: #718096;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .input-wrapper:focus-within .input-hint {
+            opacity: 1;
+        }
+
+        /* Scrollbar Styling */
+        .chat-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .chat-container {
+                height: 100vh;
+                max-height: none;
+                border-radius: 0;
+            }
+
+            .chat-header {
+                padding: 15px 20px;
+            }
+
+            .header-content {
+                margin-left: 10px;
+            }
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .header-info h3 {
+                font-size: 16px;
+            }
+
+            .welcome-section {
+                padding: 20px 15px;
+            }
+
+            .welcome-section h2 {
+                font-size: 20px;
+            }
+
+            .welcome-section p {
+                font-size: 14px;
+            }
+
+            .suggestions {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .suggestion {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            .message-content {
+                max-width: 85%;
+                font-size: 14px;
+                padding: 12px 15px;
+            }
+
+            .chat-input-container {
+                padding: 15px;
+            }
+
+            .chat-input {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            .chat-messages {
+                background: #1a202c;
+            }
+
+            .welcome-section {
+                border-color: #2d3748;
+            }
+
+            .welcome-section h2 {
+                color: #f7fafc;
+            }
+
+            .welcome-section p {
+                color: #a0aec0;
+            }
+
+            .suggestion {
+                background: #2d3748;
+                border-color: #4a5568;
+                color: #e2e8f0;
+            }
+
+            .suggestion:hover {
+                background: #374151;
+                border-color: #2d7a57;
+            }
+
+            .message.bot .message-content {
+                background: #2d3748;
+                color: #e2e8f0;
+                border-color: #4a5568;
+            }
+
+            .typing-indicator .message-content {
+                background: #2d3748;
+                border-color: #4a5568;
+            }
+
+            .input-wrapper {
+                background: #2d3748;
+                border-color: #4a5568;
+            }
+
+            .input-wrapper:focus-within {
+                background: #374151;
+                border-color: #2d7a57;
+            }
+
+            .chat-input {
+                color: #e2e8f0;
+            }
+
+            .chat-input::placeholder {
+                color: #718096;
+            }
+
+            .input-hint {
+                color: #a0aec0;
+            }
+        }
+
+        /* Connection status indicator */
+        .connection-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .connection-status.connected {
+            background: rgba(16, 185, 129, 0.2);
+            color: #059669;
+        }
+
+        .connection-status.disconnected {
+            background: rgba(239, 68, 68, 0.2);
+            color: #dc2626;
+        }
+
+        .connection-status.connecting {
+            background: rgba(245, 158, 11, 0.2);
+            color: #d97706;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <a href="../ai_consulting_website.html" class="back-button" data-translate="back-btn">
+                ← Back
+            </a>
+            <div class="header-content">
+                <div class="avatar">AI</div>
+                <div class="header-info">
+                    <h3 data-translate="chat-title">AI Assistant</h3>
+                    <div class="status">
+                        <div class="status-dot"></div>
+                        <span data-translate="status-online">Online</span>
+                    </div>
+                </div>
+            </div>
+            <div class="language-switcher">
+                <button class="lang-btn active" id="lang-en">EN</button>
+                <button class="lang-btn" id="lang-es">ES</button>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="welcome-section">
+                <h2 data-translate="welcome-title">How can I help you today?</h2>
+                <p data-translate="welcome-desc">I'm here to help you explore how AI can transform your organization. Ask me anything about our services, approach, or how we can work together.</p>
+                
+                <div class="suggestions">
+                    <div class="suggestion" onclick="sendSuggestion(this)" data-translate="suggestion-1">
+                        Tell me about your AI automation services
+                    </div>
+                    <div class="suggestion" onclick="sendSuggestion(this)" data-translate="suggestion-2">
+                        How can AI help my organization?
+                    </div>
+                    <div class="suggestion" onclick="sendSuggestion(this)" data-translate="suggestion-3">
+                        What's your implementation process?
+                    </div>
+                    <div class="suggestion" onclick="sendSuggestion(this)" data-translate="suggestion-4">
+                        I'd like to schedule a consultation
+                    </div>
+                </div>
+            </div>
+
+            <div class="typing-indicator" id="typingIndicator">
+                <div class="message-content">
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                    <span style="margin-left: 8px; color: #718096;">AI is typing...</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="input-wrapper">
+                <textarea 
+                    class="chat-input" 
+                    id="messageInput" 
+                    placeholder="Type your message..."
+                    data-translate-placeholder="input-placeholder"
+                    rows="1"
+                ></textarea>
+                <button class="send-button" id="sendButton" onclick="handleSendClick()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22,2 15,22 11,13 2,9"></polygon>
+                    </svg>
+                </button>
+                <div class="input-hint" data-translate="input-hint">
+                    Press Enter to send, Shift+Enter for new line
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // N8N Configuration - UPDATE THESE VALUES
+        const N8N_WEBHOOK_URL = 'https://soymaat.app.n8n.cloud/webhook-test/c4645636-0c05-4c57-9af6-0df1baa715a6'; // Replace with your actual N8N webhook URL
+        const API_TIMEOUT = 30000; // 30 seconds timeout
+
+        // Global variables
+        let currentLanguage = 'en';
+        let sessionId = generateSessionId();
+        
+        // DOM elements
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Translation system
+        const translations = {
+            en: {
+                'back-btn': '← Back',
+                'chat-title': 'AI Assistant',
+                'status-online': 'Online',
+                'welcome-title': 'How can I help you today?',
+                'welcome-desc': 'I\'m here to help you explore how AI can transform your organization. Ask me anything about our services, approach, or how we can work together.',
+                'suggestion-1': 'Tell me about your AI automation services',
+                'suggestion-2': 'How can AI help my organization?',
+                'suggestion-3': 'What\'s your implementation process?',
+                'suggestion-4': 'I\'d like to schedule a consultation',
+                'input-placeholder': 'Type your message...',
+                'input-hint': 'Press Enter to send, Shift+Enter for new line',
+                'fallback': 'Thanks for your message. A member of our team will contact you soon.',
+                'error': 'I apologize, but I\'m having trouble connecting right now. Please try again in a moment or contact us directly.',
+                'connecting': 'Connecting...',
+                'thinking': 'AI is thinking...'
+            },
+            es: {
+                'back-btn': '← Volver',
+                'chat-title': 'Asistente IA',
+                'status-online': 'En línea',
+                'welcome-title': '¿Cómo puedo ayudarte hoy?',
+                'welcome-desc': 'Estoy aquí para ayudarte a explorar cómo la IA puede transformar tu organización. Pregúntame cualquier cosa sobre nuestros servicios, enfoque, o cómo podemos trabajar juntos.',
+                'suggestion-1': 'Cuéntame sobre tus servicios de automatización IA',
+                'suggestion-2': '¿Cómo puede la IA ayudar a mi organización?',
+                'suggestion-3': '¿Cuál es tu proceso de implementación?',
+                'suggestion-4': 'Me gustaría agendar una consulta',
+                'input-placeholder': 'Escribe tu mensaje...',
+                'input-hint': 'Presiona Enter para enviar, Shift+Enter para nueva línea',
+                'fallback': 'Gracias por tu mensaje. Un miembro de nuestro equipo se contactará contigo pronto.',
+                'error': 'Me disculpo, pero tengo problemas de conexión ahora mismo. Por favor intenta de nuevo en un momento o contáctanos directamente.',
+                'connecting': 'Conectando...',
+                'thinking': 'IA está pensando...'
+            }
+        };
+
+        // Utility functions
+        function generateSessionId() {
+            return 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function detectLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            return browserLang.startsWith('es') ? 'es' : 'en';
+        }
+
+        function switchLanguage(lang) {
+            console.log('Switching language to:', lang);
+            currentLanguage = lang;
+            
+            // Update active buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                console.log('Removed active from:', btn.id);
+                btn.classList.remove('active');
+            });
+            document.getElementById('lang-' + lang).classList.add('active');
+            console.log('Added active to:', 'lang-' + lang);
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                console.log('Translating element with key:', key);
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                    console.log('Translation found:', translations[lang][key]);
+                }
+            });
+
+            // Update placeholder separately
+            const placeholder = translations[lang]['input-placeholder'];
+            if (placeholder) {
+                messageInput.placeholder = placeholder;
+                console.log('Updated placeholder to:', placeholder);
+            }
+
+            console.log('Language switch completed');
+        }
+
+        // Chat functions
+        function addMessageToChat(message, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            const contentDiv = document.createElement('div');
+            contentDiv.className = 'message-content';
+            contentDiv.textContent = message;
+            
+            messageDiv.appendChild(contentDiv);
+            
+            // Insert before typing indicator
+            chatMessages.insertBefore(messageDiv, typingIndicator);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            typingIndicator.style.display = 'flex';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            typingIndicator.style.display = 'none';
+        }
+
+        function adjustTextareaHeight() {
+            messageInput.style.height = 'auto';
+            messageInput.style.height = Math.min(messageInput.scrollHeight, 120) + 'px';
+        }
+
+        // Send message function
+        async function sendMessage(message) {
+            if (!message.trim()) return;
+            
+            // Add user message to chat
+            addMessageToChat(message, 'user');
+            
+            // Clear input
+            messageInput.value = '';
+            adjustTextareaHeight();
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Prepare payload
+            const payload = {
+                message: message,
+                language: currentLanguage,
+                timestamp: new Date().toISOString(),
+                sessionId: sessionId,
+                userAgent: navigator.userAgent,
+                referrer: document.referrer || 'direct'
+            };
+            
+            try {
+                console.log('🚀 Sending message to N8N...');
+                console.log('📤 Payload:', payload);
+                console.log('🔗 URL:', N8N_WEBHOOK_URL);
+                
+                const response = await fetch(N8N_WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                console.log('📥 Response status:', response.status);
+                console.log('📥 Response ok:', response.ok);
+                console.log('📥 Response headers:', [...response.headers.entries()]);
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const data = await response.json();
+                console.log('📋 Raw response text before JSON parse');
+                
+                // Process the response
+                console.log('✅ N8N Response:', data);
+                console.log('✅ N8N Response Type:', typeof data);
+                console.log('✅ N8N Response Keys:', Object.keys(data || {}));
+                
+                // Handle different response formats - Updated for your N8N workflow
+                let botMessage = '';
+                
+                // Debug: Log each property we're checking
+                console.log('🔍 Checking data.response:', data.response);
+                console.log('🔍 Checking data.reply:', data.reply);
+                console.log('🔍 Checking data.output:', data.output);
+                console.log('🔍 Checking data.message:', data.message);
+                
+                if (data && data.response) {
+                    // This matches your N8N workflow format
+                    botMessage = data.response;
+                    console.log('✅ Using data.response:', botMessage);
+                } else if (data && data.reply) {
+                    botMessage = data.reply;
+                    console.log('✅ Using data.reply:', botMessage);
+                } else if (data && data.output) {
+                    botMessage = data.output;
+                    console.log('✅ Using data.output:', botMessage);
+                } else if (data && data.message) {
+                    botMessage = data.message;
+                    console.log('✅ Using data.message:', botMessage);
+                } else if (typeof data === 'string') {
+                    botMessage = data;
+                    console.log('✅ Using data as string:', botMessage);
+                } else {
+                    console.warn('⚠️ Unexpected response format:', data);
+                    console.warn('⚠️ Using fallback message');
+                    // Fallback for unexpected formats
+                    botMessage = translations[currentLanguage].fallback;
+                }
+
+                console.log('💬 Final bot message:', botMessage);
+                addMessageToChat(botMessage, 'bot');
+
+            } catch (error) {
+                console.error('❌ Error details:', error);
+                console.error('❌ Error name:', error.name);
+                console.error('❌ Error message:', error.message);
+                console.error('❌ Error stack:', error.stack);
+                addMessageToChat(translations[currentLanguage].error, 'bot');
+            } finally {
+                // Hide typing indicator
+                hideTypingIndicator();
+            }
+        }
+
+        // Event handlers
+        function handleSendClick() {
+            const message = messageInput.value.trim();
+            if (message) {
+                sendMessage(message);
+            }
+        }
+
+        function sendSuggestion(element) {
+            const message = element.textContent.trim();
+            sendMessage(message);
+            
+            // Hide suggestions after first interaction
+            const welcomeSection = document.querySelector('.welcome-section');
+            if (welcomeSection) {
+                welcomeSection.style.display = 'none';
+            }
+        }
+
+        // Input event listeners
+        messageInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSendClick();
+            }
+        });
+
+        messageInput.addEventListener('input', adjustTextareaHeight);
+
+        // Validation and connection testing
+        function validateConfiguration() {
+            console.log('Chat interface loaded. Update N8N_WEBHOOK_URL variable to connect to your webhook.');
+            if (N8N_WEBHOOK_URL.includes('your-n8n-instance') || N8N_WEBHOOK_URL.includes('YOUR_N8N_WEBHOOK_URL')) {
+                console.warn('⚠️ N8N webhook URL not configured. Please update the N8N_WEBHOOK_URL variable.');
+                return false;
+            }
+            console.log('✅ N8N webhook URL configured:', N8N_WEBHOOK_URL);
+            return true;
+        }
+
+        // Test functions for debugging
+        function testN8NConnection() {
+            console.log('Testing N8N connection...');
+            fetch(N8N_WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: 'Test connection',
+                    sessionId: 'test-session',
+                    timestamp: new Date().toISOString()
+                })
+            })
+            .then(response => {
+                console.log('Test response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Test response data:', data);
+            })
+            .catch(error => {
+                console.error('Test connection failed:', error);
+            });
+        }
+
+        function testLanguageSwitch() {
+            console.log('Testing language switch...');
+            switchLanguage(currentLanguage === 'en' ? 'es' : 'en');
+        }
+
+        function testElementsFound() {
+            console.log('Testing if elements are found...');
+            console.log('Chat messages:', !!chatMessages);
+            console.log('Message input:', !!messageInput);
+            console.log('Send button:', !!sendButton);
+            console.log('Typing indicator:', !!typingIndicator);
+        }
+
+        // Initialization
+        function initializeChat() {
+            console.log('DOM loaded, initializing...');
+            
+            // Detect and set language
+            const detectedLang = detectLanguage();
+            console.log('Detected language:', detectedLang);
+            switchLanguage(detectedLang);
+            
+            // Validate configuration
+            validateConfiguration();
+            
+            // Setup language switchers
+            const enButton = document.getElementById('lang-en');
+            const esButton = document.getElementById('lang-es');
+            
+            console.log('EN Button found:', enButton);
+            console.log('ES Button found:', esButton);
+            
+            if (enButton) {
+                enButton.addEventListener('click', () => {
+                    console.log('EN button clicked');
+                    switchLanguage('en');
+                });
+                console.log('EN button click handler added');
+            }
+            
+            if (esButton) {
+                esButton.addEventListener('click', () => {
+                    console.log('ES button clicked');
+                    switchLanguage('es');
+                });
+                console.log('ES button click handler added');
+            }
+            
+            // Test elements
+            testElementsFound();
+            
+            console.log('Initialization completed');
+        }
+
+        // Debug functions available in console
+        console.log('Use testN8NConnection() in console to test the connection.');
+        console.log('Use testLanguageSwitch() to test language switching.');
+        console.log('Use testElementsFound() to check if all elements are found.');
+
+        // Initialize when DOM is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeChat);
+        } else {
+            initializeChat();
+        }
+    </script>
+</body>
+</html>

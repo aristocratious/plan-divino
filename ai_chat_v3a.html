@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Purpose - Open Chat Interface for All Your Models</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: #0f172a;
+            background: #ffffff;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: #0f172a;
+        }
+
+        .language-switcher {
+            display: flex;
+            gap: 0.5rem;
+            background: #f8fafc;
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: #64748b;
+            padding: 0.375rem 0.75rem;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .lang-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+
+        .lang-btn.active {
+            background: #0f172a;
+            color: white;
+        }
+
+        /* Main Content */
+        .main {
+            padding-top: 5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #475569;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge .dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white;
+            padding: 0.875rem 2rem;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #475569;
+            padding: 0.875rem 2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .btn-secondary:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+        }
+
+        /* Features Section */
+        .features {
+            background: #f8fafc;
+            padding: 6rem 2rem;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .features-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #cbd5e1;
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #0f172a;
+        }
+
+        .feature-description {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Chat Interfaces Section */
+        .interfaces {
+            padding: 6rem 2rem;
+        }
+
+        .interfaces-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .interfaces-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .interfaces-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+
+        .interfaces-subtitle {
+            font-size: 1.125rem;
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .interfaces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .interface-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .interface-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            transform: scaleX(0);
+            transition: transform 0.2s ease;
+        }
+
+        .interface-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .interface-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .interface-version {
+            display: inline-block;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .interface-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: #0f172a;
+        }
+
+        .interface-description {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .interface-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: #475569;
+        }
+
+        .status-indicator {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+        }
+
+        .status-indicator.live {
+            background: #10b981;
+        }
+
+        .status-indicator.beta {
+            background: #f59e0b;
+        }
+
+        .status-indicator.dev {
+            background: #8b5cf6;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+        }
+
+        .footer-text {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1rem 4rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.75rem;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+            }
+
+            .features,
+            .interfaces {
+                padding: 4rem 1rem;
+            }
+
+            .features-grid,
+            .interfaces-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-card,
+            .interface-card {
+                padding: 1.5rem;
+            }
+
+            .footer {
+                padding: 2rem 1rem 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" class="logo">AI & Purpose</a>
+            <div class="nav-links">
+                <a href="#features" class="nav-link" data-translate="nav-features">Features</a>
+                <a href="#interfaces" class="nav-link" data-translate="nav-interfaces">Interfaces</a>
+                <a href="https://monumental-manatee-1639f2.netlify.app/" class="nav-link" target="_blank" data-translate="nav-docs">Docs</a>
+                <div class="language-switcher">
+                    <button class="lang-btn active" id="lang-en" onclick="switchLanguage('en')">EN</button>
+                    <button class="lang-btn" id="lang-es" onclick="switchLanguage('es')">ES</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-badge">
+                <div class="dot"></div>
+                <span data-translate="hero-badge">Open-source AI chat platform</span>
+            </div>
+            <h1 class="hero-title" data-translate="hero-title">Open chat interface for all your models</h1>
+            <p class="hero-subtitle" data-translate="hero-subtitle">
+                Multi-model AI chat platform with support for OpenAI, Claude, Gemini, and local models. 
+                Built with modern design principles and powered by values-first technology.
+            </p>
+            <div class="hero-buttons">
+                <a href="ai_chat_v4.html" class="btn-primary" data-translate="hero-start">Start Chatting</a>
+                <a href="https://monumental-manatee-1639f2.netlify.app/" class="btn-secondary" target="_blank" data-translate="hero-docs">View Docs</a>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="features-container">
+                <div class="features-header">
+                    <h2 class="features-title" data-translate="features-title">Features</h2>
+                    <p class="features-subtitle" data-translate="features-subtitle">
+                        Everything you need for powerful AI conversations across multiple models and platforms
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 class="feature-title" data-translate="feature-multi-title">Multi-Model Support</h3>
+                        <p class="feature-description" data-translate="feature-multi-desc">
+                            Support for OpenAI, Claude, Gemini, Mistral, and local models through Ollama integration
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 class="feature-title" data-translate="feature-privacy-title">Privacy First</h3>
+                        <p class="feature-description" data-translate="feature-privacy-desc">
+                            Bring your own API key (BYOK) support ensures your data stays private and secure
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title" data-translate="feature-responsive-title">Responsive Design</h3>
+                        <p class="feature-description" data-translate="feature-responsive-desc">
+                            Clean, modern UI that works perfectly on desktop, tablet, and mobile devices
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌐</div>
+                        <h3 class="feature-title" data-translate="feature-i18n-title">Multi-Language</h3>
+                        <p class="feature-description" data-translate="feature-i18n-desc">
+                            Full internationalization support with English and Spanish language options
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title" data-translate="feature-performance-title">High Performance</h3>
+                        <p class="feature-description" data-translate="feature-performance-desc">
+                            Built with modern web technologies for fast loading and smooth interactions
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎨</div>
+                        <h3 class="feature-title" data-translate="feature-customizable-title">Customizable</h3>
+                        <p class="feature-description" data-translate="feature-customizable-desc">
+                            Multiple layout options and themes to match your organization's brand
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chat Interfaces Section -->
+        <section class="interfaces" id="interfaces">
+            <div class="interfaces-container">
+                <div class="interfaces-header">
+                    <h2 class="interfaces-title" data-translate="interfaces-title">Chat Interfaces</h2>
+                    <p class="interfaces-subtitle" data-translate="interfaces-subtitle">
+                        Choose from our latest chat interfaces, each optimized for different use cases and features
+                    </p>
+                </div>
+                <div class="interfaces-grid">
+                    <a href="ai_chat_v4.html" class="interface-card">
+                        <span class="interface-version">v4.0 Latest</span>
+                        <h3 class="interface-title" data-translate="interface-v4-title">AI Chat v4</h3>
+                        <p class="interface-description" data-translate="interface-v4-desc">
+                            Latest generation chat interface with enhanced performance, improved UX, and advanced features
+                        </p>
+                        <div class="interface-status">
+                            <div class="status-indicator live"></div>
+                            <span data-translate="status-production">Production Ready</span>
+                        </div>
+                    </a>
+
+                    <a href="ai_chat_v4_test.html" class="interface-card">
+                        <span class="interface-version">v4.0 Beta</span>
+                        <h3 class="interface-title" data-translate="interface-v4-test-title">AI Chat v4 Test</h3>
+                        <p class="interface-description" data-translate="interface-v4-test-desc">
+                            Beta testing environment for v4 features with experimental capabilities and latest updates
+                        </p>
+                        <div class="interface-status">
+                            <div class="status-indicator beta"></div>
+                            <span data-translate="status-beta">Beta Testing</span>
+                        </div>
+                    </a>
+
+                    <a href="ai_chat_v3.html" class="interface-card">
+                        <span class="interface-version">v3.0 Stable</span>
+                        <h3 class="interface-title" data-translate="interface-v3-title">AI Chat v3</h3>
+                        <p class="interface-description" data-translate="interface-v3-desc">
+                            Stable and reliable chat interface with proven performance and comprehensive feature set
+                        </p>
+                        <div class="interface-status">
+                            <div class="status-indicator live"></div>
+                            <span data-translate="status-stable">Stable Release</span>
+                        </div>
+                    </a>
+
+                    <a href="ai_chat_v3_test.html" class="interface-card">
+                        <span class="interface-version">v3.0 Dev</span>
+                        <h3 class="interface-title" data-translate="interface-v3-test-title">AI Chat v3 Test</h3>
+                        <p class="interface-description" data-translate="interface-v3-test-desc">
+                            Development testing environment for v3 with debugging tools and experimental features
+                        </p>
+                        <div class="interface-status">
+                            <div class="status-indicator dev"></div>
+                            <span data-translate="status-development">Development</span>
+                        </div>
+                    </a>
+
+                    <a href="ai_consulting_website.html" class="interface-card">
+                        <span class="interface-version">Main Site</span>
+                        <h3 class="interface-title" data-translate="interface-consulting-title">AI Consulting</h3>
+                        <p class="interface-description" data-translate="interface-consulting-desc">
+                            Comprehensive consulting website showcasing AI services, solutions, and organizational transformation
+                        </p>
+                        <div class="interface-status">
+                            <div class="status-indicator live"></div>
+                            <span data-translate="status-live">Live</span>
+                        </div>
+                    </a>
+
+                    <a href="https://monumental-manatee-1639f2.netlify.app/" class="interface-card" target="_blank">
+                        <span class="interface-version">Documentation</span>
+                        <h3 class="interface-title" data-translate="interface-docs-title">AI & Purpose Docs</h3>
+                        <p class="interface-description" data-translate="interface-docs-desc">
+                            Complete documentation for values-first technology and purpose-driven AI implementations
+                        </p>
+                        <div class="interface-status">
+                            <div class="status-indicator live"></div>
+                            <span data-translate="status-external">External Link</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <a href="index.html" class="footer-link" data-translate="footer-home">Home</a>
+                <a href="ai_consulting_website.html" class="footer-link" data-translate="footer-services">Services</a>
+                <a href="https://monumental-manatee-1639f2.netlify.app/" class="footer-link" target="_blank" data-translate="footer-docs">Documentation</a>
+                <a href="#" class="footer-link" data-translate="footer-contact">Contact</a>
+            </div>
+            <p class="footer-text" data-translate="footer-text">
+                © 2025 AI & Purpose. Open-source AI chat platform for purpose-driven organizations.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let currentLanguage = 'en';
+
+        // Translation system
+        const translations = {
+            en: {
+                'nav-features': 'Features',
+                'nav-interfaces': 'Interfaces',
+                'nav-docs': 'Docs',
+                'hero-badge': 'Open-source AI chat platform',
+                'hero-title': 'Open chat interface for all your models',
+                'hero-subtitle': 'Multi-model AI chat platform with support for OpenAI, Claude, Gemini, and local models. Built with modern design principles and powered by values-first technology.',
+                'hero-start': 'Start Chatting',
+                'hero-docs': 'View Docs',
+                'features-title': 'Features',
+                'features-subtitle': 'Everything you need for powerful AI conversations across multiple models and platforms',
+                'feature-multi-title': 'Multi-Model Support',
+                'feature-multi-desc': 'Support for OpenAI, Claude, Gemini, Mistral, and local models through Ollama integration',
+                'feature-privacy-title': 'Privacy First',
+                'feature-privacy-desc': 'Bring your own API key (BYOK) support ensures your data stays private and secure',
+                'feature-responsive-title': 'Responsive Design',
+                'feature-responsive-desc': 'Clean, modern UI that works perfectly on desktop, tablet, and mobile devices',
+                'feature-i18n-title': 'Multi-Language',
+                'feature-i18n-desc': 'Full internationalization support with English and Spanish language options',
+                'feature-performance-title': 'High Performance',
+                'feature-performance-desc': 'Built with modern web technologies for fast loading and smooth interactions',
+                'feature-customizable-title': 'Customizable',
+                'feature-customizable-desc': 'Multiple layout options and themes to match your organization\'s brand',
+                'interfaces-title': 'Chat Interfaces',
+                'interfaces-subtitle': 'Choose from our latest chat interfaces, each optimized for different use cases and features',
+                'interface-v4-title': 'AI Chat v4',
+                'interface-v4-desc': 'Latest generation chat interface with enhanced performance, improved UX, and advanced features',
+                'interface-v4-test-title': 'AI Chat v4 Test',
+                'interface-v4-test-desc': 'Beta testing environment for v4 features with experimental capabilities and latest updates',
+                'interface-v3-title': 'AI Chat v3',
+                'interface-v3-desc': 'Stable and reliable chat interface with proven performance and comprehensive feature set',
+                'interface-v3-test-title': 'AI Chat v3 Test',
+                'interface-v3-test-desc': 'Development testing environment for v3 with debugging tools and experimental features',
+                'interface-consulting-title': 'AI Consulting',
+                'interface-consulting-desc': 'Comprehensive consulting website showcasing AI services, solutions, and organizational transformation',
+                'interface-docs-title': 'AI & Purpose Docs',
+                'interface-docs-desc': 'Complete documentation for values-first technology and purpose-driven AI implementations',
+                'status-production': 'Production Ready',
+                'status-beta': 'Beta Testing',
+                'status-stable': 'Stable Release',
+                'status-development': 'Development',
+                'status-live': 'Live',
+                'status-external': 'External Link',
+                'footer-home': 'Home',
+                'footer-services': 'Services',
+                'footer-docs': 'Documentation',
+                'footer-contact': 'Contact',
+                'footer-text': '© 2025 AI & Purpose. Open-source AI chat platform for purpose-driven organizations.'
+            },
+            es: {
+                'nav-features': 'Características',
+                'nav-interfaces': 'Interfaces',
+                'nav-docs': 'Documentos',
+                'hero-badge': 'Plataforma de chat IA de código abierto',
+                'hero-title': 'Interface de chat abierto para todos tus modelos',
+                'hero-subtitle': 'Plataforma de chat IA multi-modelo con soporte para OpenAI, Claude, Gemini y modelos locales. Construido con principios de diseño modernos y tecnología centrada en valores.',
+                'hero-start': 'Comenzar a Chatear',
+                'hero-docs': 'Ver Documentos',
+                'features-title': 'Características',
+                'features-subtitle': 'Todo lo que necesitas para conversaciones poderosas de IA a través de múltiples modelos y plataformas',
+                'feature-multi-title': 'Soporte Multi-Modelo',
+                'feature-multi-desc': 'Soporte para OpenAI, Claude, Gemini, Mistral y modelos locales a través de integración Ollama',
+                'feature-privacy-title': 'Privacidad Primero',
+                'feature-privacy-desc': 'El soporte BYOK (trae tu propia clave API) asegura que tus datos permanezcan privados y seguros',
+                'feature-responsive-title': 'Diseño Responsivo',
+                'feature-responsive-desc': 'UI limpia y moderna que funciona perfectamente en escritorio, tablet y dispositivos móviles',
+                'feature-i18n-title': 'Multi-Idioma',
+                'feature-i18n-desc': 'Soporte completo de internacionalización con opciones de idioma inglés y español',
+                'feature-performance-title': 'Alto Rendimiento',
+                'feature-performance-desc': 'Construido con tecnologías web modernas para carga rápida e interacciones fluidas',
+                'feature-customizable-title': 'Personalizable',
+                'feature-customizable-desc': 'Múltiples opciones de diseño y temas para coincidir con la marca de tu organización',
+                'interfaces-title': 'Interfaces de Chat',
+                'interfaces-subtitle': 'Elige entre nuestras últimas interfaces de chat, cada una optimizada para diferentes casos de uso y características',
+                'interface-v4-title': 'Chat IA v4',
+                'interface-v4-desc': 'Interface de chat de última generación con rendimiento mejorado, UX mejorado y características avanzadas',
+                'interface-v4-test-title': 'Chat IA v4 Prueba',
+                'interface-v4-test-desc': 'Entorno de prueba beta para características v4 con capacidades experimentales y últimas actualizaciones',
+                'interface-v3-title': 'Chat IA v3',
+                'interface-v3-desc': 'Interface de chat estable y confiable con rendimiento probado y conjunto de características completo',
+                'interface-v3-test-title': 'Chat IA v3 Prueba',
+                'interface-v3-test-desc': 'Entorno de prueba de desarrollo para v3 con herramientas de depuración y características experimentales',
+                'interface-consulting-title': 'Consultoría IA',
+                'interface-consulting-desc': 'Sitio web de consultoría integral mostrando servicios de IA, soluciones y transformación organizacional',
+                'interface-docs-title': 'Documentos IA & Propósito',
+                'interface-docs-desc': 'Documentación completa para tecnología centrada en valores e implementaciones de IA impulsadas por propósito',
+                'status-production': 'Listo para Producción',
+                'status-beta': 'Prueba Beta',
+                'status-stable': 'Versión Estable',
+                'status-development': 'Desarrollo',
+                'status-live': 'En Vivo',
+                'status-external': 'Enlace Externo',
+                'footer-home': 'Inicio',
+                'footer-services': 'Servicios',
+                'footer-docs': 'Documentación',
+                'footer-contact': 'Contacto',
+                'footer-text': '© 2025 IA & Propósito. Plataforma de chat IA de código abierto para organizaciones impulsadas por propósito.'
+            }
+        };
+
+        // Utility functions
+        function detectLanguage() {
+            const browserLang = navigator.language || navigator.userLanguage;
+            return browserLang.startsWith('es') ? 'es' : 'en';
+        }
+
+        function switchLanguage(lang) {
+            currentLanguage = lang;
+            
+            // Update active buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('lang-' + lang).classList.add('active');
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function() {
+            // Detect and set language
+            const detectedLang = detectLanguage();
+            switchLanguage(detectedLang);
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
