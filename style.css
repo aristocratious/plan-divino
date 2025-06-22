@@ -130,7 +130,7 @@ header {
     font-weight: 800;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
-    line-height: 1.1;
+    line-height: 1.2;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -138,12 +138,13 @@ header {
 }
 .hero .subtitle {
     font-size: 1.4rem;
-    color: var(--text-secondary);
+    color: rgba(0, 0, 0, 0.7);
     margin-bottom: 3rem;
     line-height: 1.6;
 }
 .hero-cta {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+    position: relative;
+    background: linear-gradient(135deg, #0033AA, #00AAFF);
     color: white;
     padding: 1.2rem 2.5rem;
     border: none;
@@ -151,14 +152,65 @@ header {
     font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-decoration: none;
     display: inline-block;
-    box-shadow: 0 4px 14px rgba(25, 135, 84, 0.2);
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 51, 170, 0.3);
+    animation: heartbeat 2s infinite ease-in-out;
 }
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.hero-cta::before {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle closest-side, rgba(255,255,255,0.3), transparent);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+.hero-cta::after {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 170, 255, 0.3), transparent 60%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.hero-cta:hover::before {
+    width: 200%;
+    height: 200%;
+    opacity: 1;
+}
+
+.hero-cta:hover::after {
+    opacity: 1;
+}
+
 .hero-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(25, 135, 84, 0.3);
+    animation: none;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 51, 170, 0.5);
 }
 /* Hero Background Effect */
 .hero-background-effect {
@@ -1054,6 +1106,23 @@ footer {
     .hero .subtitle {
         font-size: 1.1rem;
     }
+    .hero h1 .highlight::after {
+        bottom: -3px;
+        height: 2px;
+    }
+    .hero-cta {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        animation: heartbeat-mobile 2.5s infinite ease-in-out;
+    }
+    @keyframes heartbeat-mobile {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.03);
+        }
+    }
     .container {
         padding: 0 1rem;
     }
@@ -1121,6 +1190,10 @@ footer {
     .philosophy {
         margin-top: -40px;
         padding-top: 4rem;
+    }
+    .chat-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
     }
 }
 /* Approach Section */
@@ -1229,4 +1302,35 @@ footer {
 @keyframes heroFloat3 {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }
-} 
+}
+
+/* Estilos para palabras destacadas en el hero */
+.hero h1 .highlight {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    display: inline-block;
+}
+
+.hero h1 .highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    border-radius: 2px;
+    transform: scaleX(0.8);
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+.hero h1 .highlight:hover::after {
+    transform: scaleX(1.1);
+    opacity: 1;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+

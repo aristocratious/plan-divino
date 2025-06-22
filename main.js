@@ -5,9 +5,9 @@ const translations = {
         'nav-what': 'What We Do',
         'nav-how': 'How We Work',
         'nav-cta': 'Get Started',
-        'hero-title': 'AI That Works With Your Team, Not Against Them',
-        'hero-subtitle': 'We help purpose-driven organizations implement AI solutions that enhance human capabilities while preserving what makes your work meaningful.',
-        'hero-cta': 'Start a Conversation',
+        'hero-title': 'We free up your time so you can focus on your unique potential.',
+        'hero-subtitle': 'We design and implement people-centered artificial intelligence solutions, accompanying individuals and organizations toward the new era of Human-AI collaboration.',
+        'hero-cta': 'Discover how',
         'philosophy-title': 'Why We Exist',
         'belief-title': 'Our Belief',
         'belief-p1': 'As AI handles routine tasks, organizations face a choice: optimize for speed at the cost of human purpose, or evolve toward systems that honor both capability and meaning.',
@@ -70,9 +70,9 @@ const translations = {
         'nav-what': 'Qué Hacemos',
         'nav-how': 'Cómo Trabajamos',
         'nav-cta': 'Comenzar',
-        'hero-title': 'IA Que Trabaja Con Tu Equipo',
-        'hero-subtitle': 'Ayudamos a organizaciones con propósito a implementar soluciones de IA que mejoran las capacidades humanas mientras preservan lo que hace significativo su trabajo.',
-        'hero-cta': 'Iniciar una Conversación',
+        'hero-title': 'Liberamos tu tiempo para que puedas enfocarte en tu potencial único.',
+        'hero-subtitle': 'Diseñamos e implementamos soluciones de inteligencia artificial centradas en las personas, acompañando a individuos y organizaciones hacia la nueva era de la colaboración Humano-IA.',
+        'hero-cta': 'Descubre como',
         'philosophy-title': 'Por Qué Existimos',
         'belief-title': 'Nuestra Creencia',
         'belief-p1': 'Mientras la IA maneja las tareas rutinarias, las organizaciones enfrentan una decisión: optimizar por velocidad a costa del propósito humano, o evolucionar hacia sistemas que honren tanto la capacidad como el significado.',
@@ -160,8 +160,31 @@ function switchLanguage(lang) {
         }
     });
 
+    // Apply highlights to hero title
+    applyHeroHighlights();
+
     // Store preference (would use localStorage in real implementation)
     // For artifacts, we'll just keep it in memory
+}
+
+// Function to apply highlight classes to hero title keywords
+function applyHeroHighlights() {
+    const heroTitle = document.querySelector('.hero h1[data-translate="hero-title"]');
+    if (!heroTitle) return;
+    
+    let text = heroTitle.textContent;
+    
+    if (currentLanguage === 'es') {
+        // Spanish: highlight "tiempo" and "potencial único"
+        text = text.replace(/(tiempo)/gi, '<span class="highlight">$1</span>');
+        text = text.replace(/(potencial único)/gi, '<span class="highlight">$1</span>');
+    } else {
+        // English: highlight "time" and "unique potential"
+        text = text.replace(/(time)/gi, '<span class="highlight">$1</span>');
+        text = text.replace(/(unique potential)/gi, '<span class="highlight">$1</span>');
+    }
+    
+    heroTitle.innerHTML = text;
 }
 
 // Initialize language on page load
@@ -213,4 +236,22 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Initialize language when page loads
 document.addEventListener('DOMContentLoaded', function() {
     initializeLanguage();
+    
+    // Add cursor tracking for hero CTA button
+    const heroButton = document.querySelector('.hero-cta');
+    if (heroButton) {
+        heroButton.addEventListener('mousemove', (e) => {
+            const rect = heroButton.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            heroButton.style.setProperty('--x', `${x}px`);
+            heroButton.style.setProperty('--y', `${y}px`);
+        });
+
+        heroButton.addEventListener('mouseleave', () => {
+            heroButton.style.setProperty('--x', `50%`);
+            heroButton.style.setProperty('--y', `50%`);
+        });
+    }
 }); 
