@@ -63,7 +63,11 @@ const translations = {
         'cta-desc': 'Talk to our AI assistant first—it will ask a few questions about your organization and connect you with the right person on our team.',
         'cta-button': 'Chat with Our AI Assistant',
         'footer-text': '© 2024 Collective Intelligence Consulting. Human-centered AI for purpose-driven organizations.',
-        'chat-widget': '💬 Chat Now'
+        'chat-widget': '💬 Chat Now',
+        'philosophy-intro-short': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
+        'philosophy-fusion-short': 'We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
+        'philosophy-cta-link': 'Learn about our philosophy →',
+        'philosophy-main-text': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center. We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.'
     },
     es: {
         'nav-why': 'Por Qué Existimos',
@@ -128,7 +132,11 @@ const translations = {
         'cta-desc': 'Hable primero con nuestro asistente de IA—hará algunas preguntas sobre su organización y lo conectará con la persona adecuada en nuestro equipo.',
         'cta-button': 'Chatear con Nuestro Asistente de IA',
         'footer-text': '© 2024 Collective Intelligence Consulting. IA centrada en el ser humano para organizaciones con propósito.',
-        'chat-widget': '💬 Chatear Ahora'
+        'chat-widget': '💬 Chatear Ahora',
+        'philosophy-intro-short': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
+        'philosophy-fusion-short': 'We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
+        'philosophy-cta-link': 'Conoce nuestra filosofía →',
+        'philosophy-main-text': 'La inteligencia artificial está redefiniendo nuestro mundo. Nuestra misión es asegurar que esta transformación ponga lo humano en el centro. Fusionamos la innovación en IA con el desarrollo de la conciencia personal para construir equipos más <strong>resilientes, creativos y auténticos</strong>, listos para liderar el futuro.'
     }
 };
 
@@ -156,7 +164,12 @@ function switchLanguage(lang) {
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         if (translations[lang] && translations[lang][key]) {
-            element.textContent = translations[lang][key];
+            // Check if the translation contains HTML tags
+            if (translations[lang][key].includes('<')) {
+                element.innerHTML = translations[lang][key];
+            } else {
+                element.textContent = translations[lang][key];
+            }
         }
     });
 
@@ -254,4 +267,4 @@ document.addEventListener('DOMContentLoaded', function() {
             heroButton.style.setProperty('--y', `50%`);
         });
     }
-}); 
+});

@@ -314,6 +314,13 @@ header {
     color: var(--primary);
     margin-bottom: 1rem;
 }
+.section-title--gradient {
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+}
 .section-subtitle {
     text-align: center;
     font-size: 1.2rem;
@@ -327,7 +334,7 @@ header {
 .philosophy {
     position: relative;
     margin-top: -80px;
-    padding-top: 6rem;
+    padding-top: 3rem;
     z-index: 10;
 }
 .philosophy::before {
@@ -343,7 +350,7 @@ header {
 }
 .philosophy-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     position: relative;
 }
 .section-tag {
@@ -358,16 +365,79 @@ header {
     position: relative;
     z-index: 1;
 }
-.philosophy-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
-    margin-top: 2rem;
-    position: relative;
-    z-index: 1;
+
+/* Philosophy Main Content: ahora columna */
+.philosophy-main-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem; /* Aumentamos el espacio entre el texto y las cards */
+    align-items: center; /* Centramos los hijos horizontalmente */
 }
-.philosophy-card {
-    padding: 3rem;
+
+/* Nuevo contenedor para el texto introductorio */
+.philosophy-text-intro {
+    text-align: center;
+    max-width: 800px;
+    font-size: 1.3rem;
+    color: rgba(0, 0, 0, 0.7);
+    line-height: 1.7;
+}
+
+.philosophy-text-intro p {
+    margin-bottom: 1rem;
+}
+
+.philosophy-text-intro strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Estilo para el nuevo enlace sutil */
+.philosophy-link {
+    display: inline-block;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.philosophy-link:hover {
+    color: var(--primary-dark);
+    border-bottom-color: var(--primary-dark);
+    transform: translateY(-1px);
+}
+
+/* Cards en una sola fila horizontal */
+.philosophy-cards.philosophy-cards-row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.philosophy-cards.philosophy-cards-row .value-card {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .philosophy-cards.philosophy-cards-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+/* Cards verticales derecha */
+.philosophy-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.value-card {
+    padding: 0.75rem;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(20px);
     box-shadow: 0 12px 48px 0 rgba(59,130,246,0.10), 0 2px 8px 0 rgba(147,51,234,0.08);
@@ -375,42 +445,49 @@ header {
     border: 1px solid rgba(0, 82, 204, 0.1);
     transition: all 0.3s ease;
     overflow: hidden;
+    position: relative;
 }
-.philosophy-card:hover {
+
+.value-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 24px 64px 0 rgba(59,130,246,0.18), 0 4px 16px 0 rgba(147,51,234,0.12);
     border-color: rgba(0, 82, 204, 0.2);
 }
+
+.value-card h3 {
+    color: var(--primary);
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+}
+
+.value-card p {
+    color: var(--text-secondary);
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    position: relative;
+    z-index: 2;
+}
+
 .card-decoration {
     position: absolute;
     top: 0;
     right: 0;
-    width: 150px;
-    height: 150px;
+    width: 80px;
+    height: 80px;
     background: linear-gradient(135deg, rgba(0, 82, 204, 0.05) 0%, transparent 100%);
-    border-radius: 0 20px 0 150px;
+    border-radius: 0 20px 0 80px;
     transition: all 0.3s ease;
 }
-.philosophy-card:hover .card-decoration {
+
+.value-card:hover .card-decoration {
     transform: scale(1.1);
     background: linear-gradient(135deg, rgba(0, 82, 204, 0.1) 0%, transparent 100%);
 }
-.philosophy-card h3 {
-    color: var(--primary);
-    font-size: 1.6rem;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    position: relative;
-}
-.philosophy-card p {
-    color: var(--text-secondary);
-    margin-bottom: 1.5rem;
-    font-size: 1.1rem;
-    line-height: 1.7;
-}
-.philosophy-card p:last-child {
-    margin-bottom: 0;
-}
+
 .philosophy-decoration {
     position: absolute;
     top: 0;
@@ -1333,4 +1410,100 @@ footer {
     opacity: 1;
     box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
 }
+
+/* Vision Section - REMOVED */
+/* .vision-section {
+    position: relative;
+    margin-top: -120px;
+    padding: 6rem 0 4rem;
+    background: linear-gradient(180deg, 
+        rgba(248, 249, 252, 0.95) 0%, 
+        var(--background) 100%
+    );
+    backdrop-filter: blur(20px);
+    border-radius: 0;
+    box-shadow: 
+        0 -8px 32px rgba(0, 0, 0, 0.08),
+        0 -2px 8px rgba(59, 130, 246, 0.05);
+    z-index: 15;
+    overflow: hidden;
+}
+
+.vision-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, 
+        transparent 0%, 
+        rgba(255, 255, 255, 0.8) 100%
+    );
+    pointer-events: none;
+    z-index: 5;
+}
+
+.vision-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.vision-content {
+    max-width: 900px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+} */
+
+/* Value Offer Grid - REMOVED (vision-specific) */
+/* .value-offer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+} */
+
+/* Vision Decoration Effects - REMOVED */
+/* .vision-decoration {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.vision-dots {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    width: 200px;
+    height: 200px;
+    background-image: radial-gradient(rgba(0, 82, 204, 0.1) 2px, transparent 2px);
+    background-size: 20px 20px;
+    opacity: 0.5;
+    animation: float 8s ease-in-out infinite;
+}
+
+.vision-gradient {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, 
+        rgba(147, 51, 234, 0.1) 0%, 
+        transparent 70%
+    );
+    border-radius: 50%;
+    animation: pulse 6s ease-in-out infinite;
+} */
 
