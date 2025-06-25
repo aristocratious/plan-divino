@@ -67,7 +67,17 @@ const translations = {
         'philosophy-intro-short': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
         'philosophy-fusion-short': 'We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
         'philosophy-cta-link': 'Learn about our philosophy →',
-        'philosophy-main-text': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center. We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.'
+        'philosophy-main-text': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center. We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
+        'assistant-title': 'Start Your Transformation',
+        'assistant-intro': 'Our AI assistant will guide you through a brief evaluation to identify automation opportunities in your workflow. Answer a few questions to begin and discover how to free up your most valuable asset: your time.',
+        'assistant-left-text': 'Connect your essential tools. We analyze your communication, project management, and daily routines to create intelligent, automated workflows.',
+        'assistant-left-title': 'Connect Your Ecosystem',
+        'form-name-label': 'Name',
+        'form-name-placeholder': 'Your name',
+        'form-email-label': 'Email',
+        'form-email-placeholder': 'your@email.com',
+        'form-checkbox-label': 'I confirm I am human.',
+        'form-button': 'Start AI Evaluation'
     },
     es: {
         'nav-why': 'Por Qué Existimos',
@@ -136,7 +146,17 @@ const translations = {
         'philosophy-intro-short': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
         'philosophy-fusion-short': 'We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
         'philosophy-cta-link': 'Conoce nuestra filosofía →',
-        'philosophy-main-text': 'La inteligencia artificial está redefiniendo nuestro mundo. Nuestra misión es asegurar que esta transformación ponga lo humano en el centro. Fusionamos la innovación en IA con el desarrollo de la conciencia personal para construir equipos más <strong>resilientes, creativos y auténticos</strong>, listos para liderar el futuro.'
+        'philosophy-main-text': 'La inteligencia artificial está redefiniendo nuestro mundo. Nuestra misión es asegurar que esta transformación ponga lo humano en el centro. Fusionamos la innovación en IA con el desarrollo de la conciencia personal para construir equipos más <strong>resilientes, creativos y auténticos</strong>, listos para liderar el futuro.',
+        'assistant-title': 'Inicia Tu Transformación',
+        'assistant-intro': 'Nuestro asistente de IA te guiará a través de una breve evaluación para identificar oportunidades de automatización en tu flujo de trabajo. Responde unas pocas preguntas para comenzar y descubre cómo liberar tu activo más valioso: tu tiempo.',
+        'assistant-left-text': 'Conecta tus herramientas esenciales. Analizamos tu comunicación, gestión de proyectos y rutinas diarias para crear flujos de trabajo inteligentes y personalizados.',
+        'assistant-left-title': 'Conecta tu Ecosistema',
+        'form-name-label': 'Nombre',
+        'form-name-placeholder': 'Tu nombre',
+        'form-email-label': 'Email',
+        'form-email-placeholder': 'tu@email.com',
+        'form-checkbox-label': 'Confirmo que soy humano.',
+        'form-button': 'Iniciar Evaluación con IA'
     }
 };
 
@@ -244,27 +264,4 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             mobileMenu.style.display = 'none';
         }
     });
-});
-
-// Initialize language when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    initializeLanguage();
-    
-    // Add cursor tracking for hero CTA button
-    const heroButton = document.querySelector('.hero-cta');
-    if (heroButton) {
-        heroButton.addEventListener('mousemove', (e) => {
-            const rect = heroButton.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            heroButton.style.setProperty('--x', `${x}px`);
-            heroButton.style.setProperty('--y', `${y}px`);
-        });
-
-        heroButton.addEventListener('mouseleave', () => {
-            heroButton.style.setProperty('--x', `50%`);
-            heroButton.style.setProperty('--y', `50%`);
-        });
-    }
 });

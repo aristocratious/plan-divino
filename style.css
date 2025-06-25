@@ -335,12 +335,12 @@ header {
     position: relative;
     margin-top: -80px;
     padding-top: 3rem;
-    padding-bottom: 10rem; /* Más espacio para una transición suave */
+    padding-bottom: 4rem; /* Reducido de 10rem a 4rem */
     z-index: 10;
     background-image: linear-gradient(
         to bottom,
-        rgba(250, 251, 252, 0) 50%, /* Transparente hasta el 50% de la altura */
-        var(--background) 95%      /* Transición a blanco sólido hacia el final */
+        rgba(250, 251, 252, 0) 50%,
+        var(--background) 95%
     );
 }
 .philosophy-header {
@@ -1501,4 +1501,170 @@ footer {
     border-radius: 50%;
     animation: pulse 6s ease-in-out infinite;
 } */
+
+/* AI Assistant Section */
+#ai-assistant-section {
+    background: var(--background);
+    padding: 6rem 0;
+}
+
+.assistant-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.assistant-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.assistant-left-col .assistant-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.icon-cloud-container {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--surface);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+.icon-logo {
+    position: absolute;
+    width: 55px;
+    height: 55px;
+    transition: transform 0.3s ease;
+    animation: float 8s ease-in-out infinite;
+}
+
+.icon-logo:hover {
+    transform: scale(1.2) !important; /* Usamos !important para sobreescribir la animación */
+    animation-play-state: paused; /* Pausamos la animación al pasar el ratón */
+    z-index: 100; /* Nos aseguramos de que el icono con hover esté por encima de los demás */
+}
+
+/* Keyframes para la animación de flotar */
+@keyframes float {
+    0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    25% { transform: translateY(-15px) translateX(10px) rotate(5deg); }
+    50% { transform: translateY(0px) translateX(-10px) rotate(-5deg); }
+    75% { transform: translateY(15px) translateX(10px) rotate(10deg); }
+    100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+
+/* Posiciones y delays de animación únicos para cada icono */
+.icon-logo:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; animation-duration: 8s; }
+.icon-logo:nth-child(2) { top: 20%; left: 70%; animation-delay: -2s; animation-duration: 9s; }
+.icon-logo:nth-child(3) { top: 60%; left: 80%; animation-delay: -5s; animation-duration: 7s; }
+.icon-logo:nth-child(4) { top: 70%; left: 10%; animation-delay: -3s; animation-duration: 8.5s; }
+.icon-logo:nth-child(5) { top: 40%; left: 45%; animation-delay: -7s; animation-duration: 9.5s; }
+.icon-logo:nth-child(6) { top: 80%; left: 50%; animation-delay: -1s; animation-duration: 7.5s; }
+.icon-logo:nth-child(7) { top: 5%; left: 40%; animation-delay: -4s; animation-duration: 8s; }
+.icon-logo:nth-child(8) { top: 50%; left: 20%; animation-delay: -6s; animation-duration: 9s; }
+.icon-logo:nth-child(9) { top: 85%; left: 25%; animation-delay: -2.5s; animation-duration: 7s; }
+.icon-logo:nth-child(10) { top: 15%; left: 90%; animation-delay: -4.5s; animation-duration: 8.5s; }
+.icon-logo:nth-child(11) { top: 45%; left: 5%; animation-delay: -1.5s; animation-duration: 9.5s; }
+.icon-logo:nth-child(12) { top: 65%; left: 60%; animation-delay: -5.5s; animation-duration: 8s; }
+
+.form-container {
+    background: var(--surface);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+}
+
+.form-group-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.form-group-checkbox input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--primary);
+}
+
+.form-container .cta-button {
+    width: 100%;
+    background: var(--primary);
+    color: white;
+    padding: 1rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-container .cta-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 82, 204, 0.25);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .assistant-content {
+        grid-template-columns: 1fr;
+    }
+    .assistant-left-col {
+        order: 2;
+    }
+    .assistant-right-col {
+        order: 1;
+    }
+}
+
+/* AJUSTE 2: Oscurecer el subtítulo de la nueva sección */
+#ai-assistant-section .section-subtitle {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+/* AJUSTE 3: Estilos para el nuevo título de la columna izquierda */
+.assistant-left-col h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
 
