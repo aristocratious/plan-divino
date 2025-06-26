@@ -13,6 +13,7 @@
     --text-primary: #212529; /* Color de texto principal (casi negro) */
     --text-secondary: #6C757D; /* Color de texto secundario (gris) */
     --border: #DEE2E6; /* Un color de borde sutil */
+    --text-preheading: #87a4cf; /* Color para pre-headers */
 }
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -451,11 +452,10 @@ header {
 
 .value-card-preheader {
     display: block;
-    font-size: 0.75rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    color: var(--text-secondary);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    color: var(--text-preheading);
+    font-style: italic;
     margin-bottom: 0.25rem;
     position: relative;
     z-index: 2;
@@ -472,7 +472,7 @@ header {
 
 .value-card p {
     color: var(--text-secondary);
-    margin-bottom: 0;
+    margin-bottom: 0rem;
     font-size: 0.85rem;
     line-height: 1.4;
     position: relative;
