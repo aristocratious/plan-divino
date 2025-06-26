@@ -605,7 +605,7 @@ header {
 }
 .value-card p {
     color: var(--text-secondary);
-    margin-bottom: 0rem;
+    margin-bottom: 1rem;
     font-size: 1.1rem;
     line-height: 1.7;
 }
