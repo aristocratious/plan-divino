@@ -92,7 +92,10 @@ const translations = {
         'approach-subtitle': 'Nuestra metodología probada asegura un proceso de transformación suave y efectivo.',
         'step1-description': 'Comenzamos con un análisis integral de su estado actual y objetivos.',
         'step2-description': 'Juntos, creamos una hoja de ruta personalizada para su transformación.',
-        'step3-description': 'Los guiamos a través de la ejecución de su plan de transformación.'
+        'step3-description': 'Los guiamos a través de la ejecución de su plan de transformación.',
+        'approach-step1-title': 'Evaluación Inicial',
+        'approach-step2-title': 'Desarrollo de Estrategia',
+        'approach-step3-title': 'Implementación'
     }
 };
 
