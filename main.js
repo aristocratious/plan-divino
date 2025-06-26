@@ -77,7 +77,22 @@ const translations = {
         'form-email-label': 'Email',
         'form-email-placeholder': 'your@email.com',
         'form-checkbox-label': 'I confirm I am human.',
-        'form-button': 'Start AI Evaluation'
+        'form-button': 'Start AI Evaluation',
+        'value1-title': 'AI Infrastructure with an Ethical Focus',
+        'value1-desc': 'We design and implement AI solutions that integrate strategic vision, technology and human values. We detect automatable processes with a comprehensive approach.',
+        'value2-title': 'Training and Empowerment',
+        'value2-desc': 'We prepare people and teams to use AI safely and confidently. Our approach enhances human capabilities, it doesn\'t replace them.',
+        'value3-title': 'Human Potential Activation',
+        'value3-desc': 'We accompany each person to discover their unique talent and put it into action. Because true progress happens when we are authentically human.',
+        'value-tag': 'Value Creation',
+        'services-tag': 'Our Services',
+        'clients-tag': 'Our Partners',
+        'approach-tag': 'Our Approach',
+        'approach-title': 'How We Work',
+        'approach-subtitle': 'Our proven methodology ensures a smooth and effective transformation process.',
+        'step1-description': 'We begin with a comprehensive analysis of your current state and goals.',
+        'step2-description': 'Together, we create a tailored roadmap for your transformation.',
+        'step3-description': 'We guide you through the execution of your transformation plan.'
     },
     es: {
         'nav-why': 'Por Qué Existimos',
@@ -156,7 +171,22 @@ const translations = {
         'form-email-label': 'Email',
         'form-email-placeholder': 'tu@email.com',
         'form-checkbox-label': 'Confirmo que soy humano.',
-        'form-button': 'Iniciar Evaluación con IA'
+        'form-button': 'Iniciar Evaluación con IA',
+        'value1-title': 'Infraestructura IA con enfoque ético',
+        'value1-desc': 'Diseñamos e implementamos soluciones IA que integran visión estratégica, tecnología y valores humanos. Detectamos procesos automatizables con mirada integral.',
+        'value2-title': 'Entrenamiento y Empoderamiento',
+        'value2-desc': 'Preparamos personas y equipos para usar IA con seguridad y confianza. Nuestro enfoque potencia capacidades humanas, no las reemplaza.',
+        'value3-title': 'Activación del Potencial Humano',
+        'value3-desc': 'Acompañamos a cada persona a descubrir su talento único y ponerlo en acción. Porque el verdadero progreso ocurre cuando somos auténticamente humanos.',
+        'value-tag': 'Creación de Valor',
+        'services-tag': 'Nuestros Servicios',
+        'clients-tag': 'Nuestros Socios',
+        'approach-tag': 'Nuestro Enfoque',
+        'approach-title': 'Cómo Trabajamos',
+        'approach-subtitle': 'Nuestra metodología probada asegura un proceso de transformación suave y efectivo.',
+        'step1-description': 'Comenzamos con un análisis integral de su estado actual y objetivos.',
+        'step2-description': 'Juntos, creamos una hoja de ruta personalizada para su transformación.',
+        'step3-description': 'Los guiamos a través de la ejecución de su plan de transformación.'
     }
 };
 
