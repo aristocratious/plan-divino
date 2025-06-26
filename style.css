@@ -432,8 +432,8 @@ header {
     gap: 0.5rem;
 }
 
-.value-card {
-    padding: 0.75rem;
+.philosophy-cards .value-card {
+    padding: 2.5rem;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(20px);
     box-shadow: 0 12px 48px 0 rgba(59,130,246,0.10), 0 2px 8px 0 rgba(147,51,234,0.08);
@@ -444,13 +444,13 @@ header {
     position: relative;
 }
 
-.value-card:hover {
+.philosophy-cards .value-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 24px 64px 0 rgba(59,130,246,0.18), 0 4px 16px 0 rgba(147,51,234,0.12);
     border-color: rgba(0, 82, 204, 0.2);
 }
 
-.value-card-preheader {
+.philosophy-cards .value-card-preheader {
     display: block;
     font-size: 0.9rem;
     font-weight: 500;
@@ -461,20 +461,20 @@ header {
     z-index: 2;
 }
 
-.value-card h3 {
+.philosophy-cards .value-card h3 {
     color: var(--primary);
-    font-size: 1rem;
-    margin-bottom: 0.15rem;
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
     font-weight: 600;
     position: relative;
     z-index: 2;
 }
 
-.value-card p {
+.philosophy-cards .value-card p {
     color: var(--text-secondary);
-    margin-bottom: 0rem;
-    font-size: 0.85rem;
-    line-height: 1.4;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
     position: relative;
     z-index: 2;
 }
