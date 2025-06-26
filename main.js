@@ -1,99 +1,5 @@
-// Translation system
+// Translation system - only non-English languages
 const translations = {
-    en: {
-        'nav-why': 'Why We Exist',
-        'nav-what': 'What We Do',
-        'nav-how': 'How We Work',
-        'nav-cta': 'Get Started',
-        'hero-title': 'We free up your time so you can focus on your unique potential.',
-        'hero-subtitle': 'We design and implement people-centered artificial intelligence solutions, accompanying individuals and organizations toward the new era of Human-AI collaboration.',
-        'hero-cta': 'Discover how',
-        'philosophy-title': 'Why We Exist',
-        'belief-title': 'Our Belief',
-        'belief-p1': 'As AI handles routine tasks, organizations face a choice: optimize for speed at the cost of human purpose, or evolve toward systems that honor both capability and meaning.',
-        'belief-p2': 'We believe the future belongs to organizations that embrace distributed decision-making and authentic contribution—where people bring their full potential to work in service of shared purpose.',
-        'transformation-title': 'The Transformation We\'re Part Of',
-        'transformation-p1': 'We\'re witnessing a shift toward purposeful work, where individual development and collective impact become inseparable. As AI automates execution, the work that matters becomes increasingly human-centered.',
-        'transformation-p2': 'When people align with deeper purpose and combine wisdom with technology, they create organizations that serve all stakeholders while remaining competitive and innovative.',
-        'value-title': 'The Changing Rules of Value',
-        'value-subtitle': 'As AI handles more routine work, economic value is shifting from speed of execution to quality of insight, strategy, and human judgment.',
-        'trap-title': 'The Common Trap',
-        'trap-desc': 'Most organizations use AI as a faster tool for existing work. This creates temporary gains but leads to a race where everyone has the same advantages.',
-        'trap-point1': 'Focus on doing the same things faster',
-        'trap-point2': 'Temporary productivity gains',
-        'trap-point3': 'Commoditization as competitors catch up',
-        'wise-title': 'A Wiser Path',
-        'wise-desc': 'We help you discover new ways to create value by enhancing human creativity, judgment, and collaboration—capabilities that become more valuable as AI spreads.',
-        'wise-point1': 'Reimagine workflows and value creation',
-        'wise-point2': 'Sustainable competitive advantages',
-        'wise-point3': 'Meaningful work that AI can\'t replicate',
-        'services-title': 'What We Do',
-        'services-subtitle': 'We provide practical guidance and hands-on support to integrate AI in ways that align with your values and amplify your team\'s potential.',
-        'service1-title': 'AI Strategy & Planning',
-        'service1-desc': 'We assess your current processes, identify where AI can help most, and create a clear roadmap for implementation that aligns with your organizational values.',
-        'service2-title': 'Implementation & Training',
-        'service2-desc': 'We build and deploy AI tools that integrate seamlessly with your existing workflows, then train your team to use them effectively and confidently.',
-        'service3-title': 'Human-AI Collaboration',
-        'service3-desc': 'We help your team develop the skills to work alongside AI—maintaining critical thinking, creativity, and the human judgment that AI can\'t replace.',
-        'service4-title': 'Personal Purpose & Alignment',
-        'service4-desc': 'We guide individuals in discovering their deeper purpose and aligning their work with their values. This internal coherence reduces anxiety, prevents burnout, and creates the foundation for both personal fulfillment and meaningful organizational contribution.',
-        'service5-title': 'Process Automation',
-        'service5-desc': 'We automate routine tasks so your team can focus on strategic work, relationship building, and the complex problem-solving that drives your mission forward.',
-        'service6-title': 'Ethical & Responsible AI',
-        'service6-desc': 'We provide guidance on implementing AI ethically, ensuring fairness, transparency, and data privacy are central to your technological evolution while maintaining alignment with your organizational values.',
-        'clients-title': 'Who We Work With',
-        'clients-subtitle': 'We partner with organizations that prioritize both innovation and human flourishing.',
-        'client1-title': 'Purpose-Driven Organizations',
-        'client1-desc': 'Companies that prioritize mission alongside profit, seeking to create positive impact while remaining competitive.',
-        'client2-title': 'Cooperatives & B-Corps',
-        'client2-desc': 'Organizations already committed to shared ownership, stakeholder governance, and social responsibility.',
-        'client3-title': 'Non-Profits & Foundations',
-        'client3-desc': 'Mission-driven organizations looking to amplify their impact through thoughtful technology adoption.',
-        'client4-title': 'Educational Institutions',
-        'client4-desc': 'Schools and research organizations focused on human development and conscious culture building.',
-        'process-title': 'How We Work',
-        'process-subtitle': 'Our approach emphasizes partnership, understanding, and sustainable transformation.',
-        'step1-title': 'Listen & Assess',
-        'step1-desc': 'We start by understanding your organization, goals, and concerns about AI implementation.',
-        'step2-title': 'Design & Build',
-        'step2-desc': 'We create custom AI solutions that fit your specific needs and organizational culture.',
-        'step3-title': 'Train & Support',
-        'step3-desc': 'We ensure your team is confident and capable, with ongoing support as you grow.',
-        'cta-title': 'Ready to Get Started?',
-        'cta-desc': 'Talk to our AI assistant first—it will ask a few questions about your organization and connect you with the right person on our team.',
-        'cta-button': 'Chat with Our AI Assistant',
-        'footer-text': '© 2024 Collective Intelligence Consulting. Human-centered AI for purpose-driven organizations.',
-        'chat-widget': '💬 Chat Now',
-        'philosophy-intro-short': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
-        'philosophy-fusion-short': 'We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
-        'philosophy-cta-link': 'Learn about our philosophy →',
-        'philosophy-main-text': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center. We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
-        'assistant-title': 'Start Your Transformation',
-        'assistant-intro': 'Our AI assistant will guide you through a brief evaluation to identify automation opportunities in your workflow. Answer a few questions to begin and discover how to free up your most valuable asset: your time.',
-        'assistant-left-text': 'Connect your essential tools. We analyze your communication, project management, and daily routines to create intelligent, automated workflows.',
-        'assistant-left-title': 'Connect Your Ecosystem',
-        'form-name-label': 'Name',
-        'form-name-placeholder': 'Your name',
-        'form-email-label': 'Email',
-        'form-email-placeholder': 'your@email.com',
-        'form-checkbox-label': 'I confirm I am human.',
-        'form-button': 'Start AI Evaluation',
-        'value1-title': 'AI Infrastructure with an Ethical Focus',
-        'value1-desc': 'We design and implement AI solutions that integrate strategic vision, technology and human values. We detect automatable processes with a comprehensive approach.',
-        'value2-title': 'Training and Empowerment',
-        'value2-desc': 'We prepare people and teams to use AI safely and confidently. Our approach enhances human capabilities, it doesn\'t replace them.',
-        'value3-title': 'Human Potential Activation',
-        'value3-desc': 'We accompany each person to discover their unique talent and put it into action. Because true progress happens when we are authentically human.',
-        'value-tag': 'Value Creation',
-        'services-tag': 'Our Services',
-        'clients-tag': 'Our Partners',
-        'approach-tag': 'Our Approach',
-        'approach-title': 'How We Work',
-        'approach-subtitle': 'Our proven methodology ensures a smooth and effective transformation process.',
-        'step1-description': 'We begin with a comprehensive analysis of your current state and goals.',
-        'step2-description': 'Together, we create a tailored roadmap for your transformation.',
-        'step3-description': 'We guide you through the execution of your transformation plan.'
-    },
     es: {
         'nav-why': 'Por Qué Existimos',
         'nav-what': 'Qué Hacemos',
@@ -191,6 +97,15 @@ const translations = {
 };
 
 let currentLanguage = 'en';
+let originalContent = {};
+
+// Cache original English content from HTML
+function cacheOriginalContent() {
+    document.querySelectorAll('[data-translate]').forEach(element => {
+        const key = element.getAttribute('data-translate');
+        originalContent[key] = element.innerHTML;
+    });
+}
 
 // Detect browser language
 function detectLanguage() {
@@ -213,13 +128,15 @@ function switchLanguage(lang) {
     // Update all translatable elements
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
-            // Check if the translation contains HTML tags
-            if (translations[lang][key].includes('<')) {
-                element.innerHTML = translations[lang][key];
-            } else {
-                element.textContent = translations[lang][key];
+        
+        if (lang === 'en') {
+            // Restore original English content
+            if (originalContent[key]) {
+                element.innerHTML = originalContent[key];
             }
+        } else if (translations[lang] && translations[lang][key]) {
+            // Apply translation for other languages
+            element.innerHTML = translations[lang][key];
         }
     });
 
@@ -294,4 +211,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             mobileMenu.style.display = 'none';
         }
     });
+});
+
+// Initialize language when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    cacheOriginalContent(); // Cache English content first
+    initializeLanguage();
 });
