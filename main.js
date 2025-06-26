@@ -95,7 +95,10 @@ const translations = {
         'step3-description': 'Los guiamos a través de la ejecución de su plan de transformación.',
         'approach-step1-title': 'Evaluación Inicial',
         'approach-step2-title': 'Desarrollo de Estrategia',
-        'approach-step3-title': 'Implementación'
+        'approach-step3-title': 'Implementación',
+        'value1-preheader': 'Para organizaciones',
+        'value2-preheader': 'Para equipos',
+        'value3-preheader': 'Para individuos'
     }
 };
 
