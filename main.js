@@ -6,7 +6,7 @@ const translations = {
         'nav-how': 'Cómo Trabajamos',
         'nav-cta': 'Comenzar',
         'hero-title': 'Liberamos tu tiempo para que puedas enfocarte en tu potencial único.',
-        'hero-subtitle': 'Diseñamos e implementamos soluciones de inteligencia artificial centradas en las personas, acompañando a individuos y organizaciones hacia la nueva era de la colaboración Humano-IA.',
+        'hero-subtitle': 'Diseñamos e implementamos <strong>Inteligencia Artificial</strong> centradas en las personas, acompañando a individuos y organizaciones hacia la nueva era de la colaboración Humano-IA.',
         'hero-cta': 'Descubre como',
         'philosophy-title': 'Por Qué Existimos',
         'belief-title': 'Nuestra Creencia',
