@@ -15,10 +15,247 @@
     --border: #DEE2E6; /* Un color de borde sutil */
     --text-preheading: #87a4cf; /* Color para pre-headers */
 }
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    background: var(--background);
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     line-height: 1.7;
     color: var(--text-primary);
+    background: var(--background);
+    /* El fondo del body se elimina para permitir que el efecto aurora sea visible */
+}
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+/* Header */
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary);
+}
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+/* Language Switcher */
+.language-switcher {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.lang-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+.lang-btn:hover {
+    background: var(--surface);
+    border-color: var(--primary);
+    color: var(--primary);
+}
+.lang-btn.active {
+    background: none;
+    color: var(--primary);
+    font-weight: 700;
+    border-color: transparent;
+}
+.nav-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.nav-link:hover {
+    color: var(--primary);
+}
+.contact-link {
+    background: var(--accent);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+.contact-link:hover {
+    background: var(--accent-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+}
+/* Hero */
+.hero {
+    padding: 8rem 0 10rem; /* Más padding inferior */
+    position: relative;
+    overflow: visible; /* Permite que los gradientes sangren hacia abajo */
+}
+.hero .container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.hero-content {
+    text-align: center;
+    max-width: 800px;
+    position: relative;
+    z-index: 10;
+    /* Fondo sutil para legibilidad en móviles */
+}
+.hero h1, .hero .subtitle {
+    text-shadow: 0 2px 24px rgba(0,0,0,0.10), 0 1px 2px rgba(0,0,0,0.08);
+}
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.hero .subtitle {
+    font-size: 1.4rem;
+    color: rgba(0, 0, 0, 0.7);
+    margin-bottom: 3rem;
+    line-height: 1.6;
+}
+.hero-cta {
+    position: relative;
+    background: linear-gradient(135deg, #0033AA, #00AAFF);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 51, 170, 0.3);
+    animation: heartbeat 2s infinite ease-in-out;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.hero-cta::before {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle closest-side, rgba(255,255,255,0.3), transparent);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+.hero-cta::after {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(0, 170, 255, 0.3), transparent 60%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.hero-cta:hover::before {
+    width: 200%;
+    height: 200%;
+    opacity: 1;
+}
+
+.hero-cta:hover::after {
+    opacity: 1;
+}
+
+.hero-cta:hover {
+    animation: none;
+    transform: scale(1.05);
+    box-shadow: 0 10px 25px rgba(0, 51, 170, 0.5);
+}
+/* Hero Background Effect */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root {
+    --primary: #0052CC; /* Un azul profesional y vibrante */
+    --primary-dark: #0041A3; /* Un azul más oscuro para hover/activos */
+    --accent: #198754; /* Un verde positivo y de acción */
+    --accent-dark: #146c43; /* Un verde más oscuro para hover/activos */
+    --background: #FFFFFF; /* Fondo principal blanco y limpio */
+    --surface: #F8F9FA; /* Un gris muy claro para fondos de sección o tarjetas */
+    --text-primary: #212529; /* Color de texto principal (casi negro) */
+    --text-secondary: #6C757D; /* Color de texto secundario (gris) */
+    --border: #DEE2E6; /* Un color de borde sutil */
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    background: var(--background);
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: var(--background);
     /* El fondo del body se elimina para permitir que el efecto aurora sea visible */
 }
 .container {
