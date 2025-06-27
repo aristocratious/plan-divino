@@ -660,6 +660,9 @@ header {
     flex-direction: column;
     gap: 1rem;
   }
+  .philosophy-cards.philosophy-cards-row .value-card {
+    flex: initial;
+  }
 }
 
 /* Cards verticales derecha */
