@@ -64,7 +64,7 @@ const translations = {
         'cta-button': 'Chatear con Nuestro Asistente de IA',
         'footer-text': '© 2024 Collective Intelligence Consulting. IA centrada en el ser humano para organizaciones con propósito.',
         'chat-widget': '💬 Chatear Ahora',
-        'philosophy-intro-short': 'Artificial intelligence is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
+        'philosophy-intro-short': 'Artificial Intelligence (AI) is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
         'philosophy-fusion-short': 'We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
         'philosophy-cta-link': 'Conoce nuestra filosofía →',
         'philosophy-main-text': 'La inteligencia artificial está redefiniendo nuestro mundo. Nuestra misión es asegurar que esta transformación ponga lo humano en el centro. Fusionamos la innovación en IA con el desarrollo de la conciencia personal para construir equipos más <strong>resilientes, creativos y auténticos</strong>, listos para liderar el futuro.',
