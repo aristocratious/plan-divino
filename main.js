@@ -1,117 +1,118 @@
-// Translation system - only non-English languages
+// REEMPLAZA EL OBJETO translations COMPLETO CON ESTA VERSIÓN
 const translations = {
+    en: {
+        'nav-what': 'What We Do',
+        'nav-how': 'How We Work',
+        'nav-cta': 'Get Started',
+        'hero-title': 'We free up your <span class="highlight">time</span> so you can focus on your <span class="highlight">unique potential</span>.',
+        'hero-subtitle': 'We design and implement people-centered <strong>Artificial Intelligence</strong> solutions, accompanying individuals and organizations toward the new era of Human-AI collaboration.',
+        'hero-cta': 'Discover How',
+        'philosophy-title': 'Why We Exist?',
+        'philosophy-main-text': 'Artificial Intelligence (AI) is reshaping our world. Our mission is to ensure this transformation puts people at the center. We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
+        'philosophy-cta-link': 'Learn about our philosophy →',
+        'value1-preheader': 'For organizations',
+        'value1-title': 'AI Infrastructure with an Ethical Focus',
+        'value1-desc': 'We design and implement AI solutions that integrate strategic vision, technology and human values. We detect automatable processes with a comprehensive approach.',
+        'value2-preheader': 'For teams',
+        'value2-title': 'Training and Empowerment',
+        'value2-desc': 'We prepare people and teams to use AI safely and confidently. Our approach enhances human capabilities, it doesn\'t replace them.',
+        'value3-preheader': 'For individuals',
+        'value3-title': 'Human Potential Activation',
+        'value3-desc': 'We accompany each person to discover their unique talent and put it into action. Because true progress happens when we are authentically human.',
+        'assistant-title': 'Start Your Transformation',
+        'assistant-intro': 'Our AI assistant will guide you through a brief evaluation to identify automation opportunities in your workflow. Answer a few questions to begin and discover how to free up your most valuable asset: your time.',
+        'form-button': 'Start AI Evaluation',
+        'connect-ecosystem-title': 'Connect Your Ecosystem',
+        'connect-ecosystem-subtitle': 'Integrate your essential tools and automate your workflows for unprecedented efficiency.',
+        'benefits-title': 'Discover What You Will Achieve',
+        'benefits-subtitle': 'This transformation goes beyond efficiency. It\'s about unleashing human potential to build more resilient, innovative, and purpose-driven organizations.',
+        'benefit1-title': 'A Digital Workforce at Your Service',
+        'benefit1-desc': 'We don\'t just deliver a software tool; we design a digital workforce. Autonomous AI agents that integrate into your ecosystem, make decisions, and execute complex processes, freeing up your team for the work only humans can do: innovate, connect, and lead.',
+        'benefit1-point1': 'End-to-end workflow automation.',
+        'benefit1-point2': '24/7 continuous operation without human intervention.',
+        'benefit1-point3': 'Measurable results, not just productivity gains.',
+        'benefit2-title': 'We Empower Your Team, Not Replace It',
+        'benefit2-desc': 'AI is not here to take jobs, but to transform roles. We turn task executors into strategists, creatives, and critical thinkers. By delegating the repetitive to AI, we unleash your organization\'s most valuable resource: human intelligence and judgment.',
+        'benefit2-point1': 'From execution to strategy.',
+        'benefit2-point2': 'Focus on creativity and complex problem-solving.',
+        'benefit2-point3': 'Increased team satisfaction and engagement.',
+        'benefit3-title': 'The Inner Transformation: The True ROI',
+        'benefit3-desc': 'In the age of AI, our humanity is not a liability; it\'s our greatest competitive asset. Introspection and self-awareness are the foundation for resilient, motivated, and truly committed teams. We guide you on that inner journey that enhances outer success.',
+        'benefit3-point1': 'Alignment of work with personal values.',
+        'benefit3-point2': 'Reduced burnout and increased resilience.',
+        'benefit3-point3': 'Shared purpose-driven organizational culture.',
+        'final-cta': 'I\'m Ready to Start My Transformation',
+        'footer-text': '&copy; 2024 Collective Intelligence Consulting. Human-centered AI for purpose-driven organizations.',
+        'chat-widget': '💬 Chat Now',
+        'keyword-strategy': 'Strategy',
+        'keyword-creativity': 'Creativity',
+        'keyword-leadership': 'Leadership',
+        'keyword-purpose': 'Purpose',
+        'keyword-collaboration': 'Collaboration',
+        'keyword-judgment': 'Human Judgment',
+        'keyword-innovation': 'Innovation',
+        'keyword-resilience': 'Resilience',
+        'keyword-commitment': 'Commitment',
+        'keyword-efficiency': 'Efficiency'
+    },
     es: {
-        'nav-why': 'Por Qué Existimos',
         'nav-what': 'Qué Hacemos',
         'nav-how': 'Cómo Trabajamos',
         'nav-cta': 'Comenzar',
-        'hero-title': 'Liberamos tu tiempo para que puedas enfocarte en tu potencial único.',
+        'hero-title': 'Liberamos tu <span class="highlight">tiempo</span> para que puedas enfocarte en tu <span class="highlight">potencial único</span>.',
         'hero-subtitle': 'Diseñamos e implementamos <strong>Inteligencia Artificial</strong> centradas en las personas, acompañando a individuos y organizaciones hacia la nueva era de la colaboración Humano-IA.',
         'hero-cta': 'Descubre como',
-        'philosophy-title': 'Por Qué Existimos',
-        'belief-title': 'Nuestra Creencia',
-        'belief-p1': 'Mientras la IA maneja las tareas rutinarias, las organizaciones enfrentan una decisión: optimizar por velocidad a costa del propósito humano, o evolucionar hacia sistemas que honren tanto la capacidad como el significado.',
-        'belief-p2': 'Creemos que el futuro pertenece a organizaciones que abrazan la toma de decisiones distribuida y la contribución auténtica—donde las personas aportan todo su potencial al trabajo en servicio de un propósito compartido.',
-        'transformation-title': 'La Transformación De La Que Somos Parte',
-        'transformation-p1': 'Estamos presenciando un cambio hacia el trabajo con propósito, donde el desarrollo individual y el impacto colectivo se vuelven inseparables. Mientras la IA automatiza la ejecución, el trabajo que importa se vuelve cada vez más centrado en el ser humano.',
-        'transformation-p2': 'Cuando las personas se alinean con un propósito más profundo y combinan sabiduría con tecnología, crean organizaciones que sirven a todas las partes interesadas mientras permanecen competitivas e innovadoras.',
-        'value-title': 'Las Reglas Cambiantes del Valor',
-        'value-subtitle': 'Mientras la IA maneja más trabajo rutinario, el valor económico está cambiando de la velocidad de ejecución a la calidad de percepción, estrategia y juicio humano.',
-        'trap-title': 'La Trampa Común',
-        'trap-desc': 'La mayoría de las organizaciones usan la IA como una herramienta más rápida para el trabajo existente. Esto crea ganancias temporales pero lleva a una carrera donde todos tienen las mismas ventajas.',
-        'trap-point1': 'Enfocarse en hacer las mismas cosas más rápido',
-        'trap-point2': 'Ganancias de productividad temporales',
-        'trap-point3': 'Comoditización mientras los competidores se ponen al día',
-        'wise-title': 'Un Camino Más Sabio',
-        'wise-desc': 'Te ayudamos a descubrir nuevas formas de crear valor mejorando la creatividad, el juicio y la colaboración humana—capacidades que se vuelven más valiosas mientras la IA se extiende.',
-        'wise-point1': 'Reimaginar flujos de trabajo y creación de valor',
-        'wise-point2': 'Ventajas competitivas sostenibles',
-        'wise-point3': 'Trabajo significativo que la IA no puede replicar',
-        'services-title': 'Qué Hacemos',
-        'services-subtitle': 'Proporcionamos orientación práctica y apoyo directo para integrar la IA de maneras que se alineen con sus valores y amplíen el potencial de su equipo.',
-        'service1-title': 'Estrategia y Planificación de IA',
-        'service1-desc': 'Evaluamos sus procesos actuales, identificamos dónde la IA puede ayudar más, y creamos una hoja de ruta clara para la implementación que se alinee con sus valores organizacionales.',
-        'service2-title': 'Implementación y Capacitación',
-        'service2-desc': 'Construimos e implementamos herramientas de IA que se integran perfectamente con sus flujos de trabajo existentes, luego capacitamos a su equipo para usarlas de manera efectiva y con confianza.',
-        'service3-title': 'Colaboración Humano-IA',
-        'service3-desc': 'Ayudamos a su equipo a desarrollar las habilidades para trabajar junto a la IA—manteniendo el pensamiento crítico, la creatividad y el juicio humano que la IA no puede reemplazar.',
-        'service4-title': 'Propósito Personal y Alineación',
-        'service4-desc': 'Guiamos a individuos en descubrir su propósito más profundo y alinear su trabajo con sus valores. Esta coherencia interna reduce la ansiedad, previene el agotamiento, y crea la base tanto para la realización personal como para la contribución organizacional significativa.',
-        'service5-title': 'Automatización de Procesos',
-        'service5-desc': 'Automatizamos tareas rutinarias para que su equipo pueda enfocarse en trabajo estratégico, construcción de relaciones, y la resolución de problemas complejos que impulsa su misión.',
-        'service6-title': 'IA Ética y Responsable',
-        'service6-desc': 'Proporcionamos orientación sobre implementar IA éticamente, asegurando que la equidad, transparencia y privacidad de datos sean centrales en su evolución tecnológica mientras mantienen alineación con sus valores organizacionales.',
-        'clients-title': 'Con Quién Trabajamos',
-        'clients-subtitle': 'Nos asociamos con organizaciones que priorizan tanto la innovación como el florecimiento humano.',
-        'client1-title': 'Organizaciones con Propósito',
-        'client1-desc': 'Empresas que priorizan la misión junto a las ganancias, buscando crear impacto positivo mientras permanecen competitivas.',
-        'client2-title': 'Cooperativas y B-Corps',
-        'client2-desc': 'Organizaciones ya comprometidas con la propiedad compartida, la gobernanza de partes interesadas, y la responsabilidad social.',
-        'client3-title': 'ONGs y Fundaciones',
-        'client3-desc': 'Organizaciones impulsadas por misión que buscan amplificar su impacto a través de la adopción tecnológica reflexiva.',
-        'client4-title': 'Instituciones Educativas',
-        'client4-desc': 'Escuelas y organizaciones de investigación enfocadas en el desarrollo humano y la construcción de cultura consciente.',
-        'process-title': 'Cómo Trabajamos',
-        'process-subtitle': 'Nuestro enfoque enfatiza la asociación, el entendimiento, y la transformación sostenible.',
-        'step1-title': 'Escuchar y Evaluar',
-        'step1-desc': 'Comenzamos entendiendo su organización, objetivos, y preocupaciones sobre la implementación de IA.',
-        'step2-title': 'Diseñar y Construir',
-        'step2-desc': 'Creamos soluciones de IA personalizadas que se ajusten a sus necesidades específicas y cultura organizacional.',
-        'step3-title': 'Capacitar y Apoyar',
-        'step3-desc': 'Nos aseguramos de que su equipo esté confiado y capacitado, con apoyo continuo mientras crece.',
-        'cta-title': '¿Listo para Comenzar?',
-        'cta-desc': 'Hable primero con nuestro asistente de IA—hará algunas preguntas sobre su organización y lo conectará con la persona adecuada en nuestro equipo.',
-        'cta-button': 'Chatear con Nuestro Asistente de IA',
-        'footer-text': '© 2024 Collective Intelligence Consulting. IA centrada en el ser humano para organizaciones con propósito.',
-        'chat-widget': '💬 Chatear Ahora',
-        'philosophy-intro-short': 'Artificial Intelligence (AI) is reshaping our world. Our mission is to ensure this transformation puts people at the center.',
-        'philosophy-fusion-short': 'We merge AI innovation with personal consciousness development to build more <strong>resilient, creative, and authentic</strong> teams, ready to lead the future.',
-        'philosophy-cta-link': 'Conoce nuestra filosofía →',
+        'philosophy-title': '¿Por Qué Existimos?',
         'philosophy-main-text': 'La inteligencia artificial está redefiniendo nuestro mundo. Nuestra misión es asegurar que esta transformación ponga lo humano en el centro. Fusionamos la innovación en IA con el desarrollo de la conciencia personal para construir equipos más <strong>resilientes, creativos y auténticos</strong>, listos para liderar el futuro.',
-        'assistant-title': 'Inicia Tu Transformación',
-        'assistant-intro': 'Nuestro asistente de IA te guiará a través de una breve evaluación para identificar oportunidades de automatización en tu flujo de trabajo. Responde unas pocas preguntas para comenzar y descubre cómo liberar tu activo más valioso: tu tiempo.',
-        'assistant-left-text': 'Conecta tus herramientas esenciales. Analizamos tu comunicación, gestión de proyectos y rutinas diarias para crear flujos de trabajo inteligentes y personalizados.',
-        'assistant-left-title': 'Conecta tu Ecosistema',
-        'form-name-label': 'Nombre',
-        'form-name-placeholder': 'Tu nombre',
-        'form-email-label': 'Email',
-        'form-email-placeholder': 'tu@email.com',
-        'form-checkbox-label': 'Confirmo que soy humano.',
-        'form-button': 'Iniciar Evaluación con IA',
+        'philosophy-cta-link': 'Conoce nuestra filosofía →',
+        'value1-preheader': 'Para organizaciones',
         'value1-title': 'Infraestructura IA con enfoque ético',
         'value1-desc': 'Diseñamos e implementamos soluciones IA que integran visión estratégica, tecnología y valores humanos. Detectamos procesos automatizables con mirada integral.',
+        'value2-preheader': 'Para equipos',
         'value2-title': 'Entrenamiento y Empoderamiento',
         'value2-desc': 'Preparamos personas y equipos para usar IA con seguridad y confianza. Nuestro enfoque potencia capacidades humanas, no las reemplaza.',
+        'value3-preheader': 'Para individuos',
         'value3-title': 'Activación del Potencial Humano',
         'value3-desc': 'Acompañamos a cada persona a descubrir su talento único y ponerlo en acción. Porque el verdadero progreso ocurre cuando somos auténticamente humanos.',
-        'value-tag': 'Creación de Valor',
-        'services-tag': 'Nuestros Servicios',
-        'clients-tag': 'Nuestros Socios',
-        'approach-tag': 'Nuestro Enfoque',
-        'approach-title': 'Cómo Trabajamos',
-        'approach-subtitle': 'Nuestra metodología probada asegura un proceso de transformación suave y efectivo.',
-        'step1-description': 'Comenzamos con un análisis integral de su estado actual y objetivos.',
-        'step2-description': 'Juntos, creamos una hoja de ruta personalizada para su transformación.',
-        'step3-description': 'Los guiamos a través de la ejecución de su plan de transformación.',
-        'approach-step1-title': 'Evaluación Inicial',
-        'approach-step2-title': 'Desarrollo de Estrategia',
-        'approach-step3-title': 'Implementación',
-        'value1-preheader': 'Para organizaciones',
-        'value2-preheader': 'Para equipos',
-        'value3-preheader': 'Para individuos'
+        'assistant-title': 'Inicia Tu Transformación',
+        'assistant-intro': 'Nuestro asistente de IA te guiará a través de una breve evaluación para identificar oportunidades de automatización en tu flujo de trabajo. Responde unas pocas preguntas para comenzar y descubre cómo liberar tu activo más valioso: tu tiempo.',
+        'form-button': 'Iniciar Evaluación con IA',
+        'connect-ecosystem-title': 'Conecta tu Ecosistema',
+        'connect-ecosystem-subtitle': 'Integra tus herramientas esenciales y automatiza tus flujos de trabajo para una eficiencia sin precedentes.',
+        'benefits-title': 'Descubre lo que Lograrás',
+        'benefits-subtitle': 'Esta transformación va más allá de la eficiencia. Se trata de liberar el potencial humano para construir organizaciones más resilientes, innovadoras y con un propósito claro.',
+        'benefit1-title': 'Una Fuerza Laboral Digital a tu Servicio',
+        'benefit1-desc': 'No te entregamos una simple herramienta de software, diseñamos una fuerza laboral digital. Agentes de IA autónomos que se integran a tu ecosistema, toman decisiones y ejecutan procesos complejos, liberando a tu equipo para el trabajo que solo los humanos pueden hacer: innovar, conectar y liderar.',
+        'benefit1-point1': 'Automatización de flujos de trabajo de principio a fin.',
+        'benefit1-point2': 'Operación continua 24/7 sin intervención humana.',
+        'benefit1-point3': 'Resultados medibles, no solo aumento de productividad.',
+        'benefit2-title': 'Potenciamos a tu Equipo, no lo Reemplazamos',
+        'benefit2-desc': 'La IA no viene a quitar trabajos, sino a transformar roles. Convertimos a los ejecutores de tareas en estrategas, creativos y pensadores críticos. Al delegar lo repetitivo a la IA, liberamos el recurso más valioso de tu organización: la inteligencia y el juicio humano.',
+        'benefit2-point1': 'De la ejecución a la estrategia.',
+        'benefit2-point2': 'Foco en creatividad y resolución de problemas complejos.',
+        'benefit2-point3': 'Aumento de la satisfacción y el compromiso del equipo.',
+        'benefit3-title': 'La Transformación Interior: El Verdadero ROI',
+        'benefit3-desc': 'En la era de la IA, nuestra humanidad no es una debilidad, es nuestro mayor activo competitivo. La introspección y el autoconocimiento son la base de equipos resilientes, motivados y verdaderamente comprometidos. Te acompañamos en ese viaje interior que potencia el éxito exterior.',
+        'benefit3-point1': 'Alineación del trabajo con los valores personales.',
+        'benefit3-point2': 'Reducción del burnout y aumento de la resiliencia.',
+        'benefit3-point3': 'Cultura organizacional con un propósito compartido.',
+        'final-cta': 'Estoy Listo para Iniciar mi Transformación',
+        'footer-text': '&copy; 2024 Collective Intelligence Consulting. IA centrada en el ser humano para organizaciones con propósito.',
+        'chat-widget': '💬 Chatear Ahora',
+        'keyword-strategy': 'Estrategia',
+        'keyword-creativity': 'Creatividad',
+        'keyword-leadership': 'Liderazgo',
+        'keyword-purpose': 'Propósito',
+        'keyword-collaboration': 'Colaboración',
+        'keyword-judgment': 'Juicio Humano',
+        'keyword-innovation': 'Innovación',
+        'keyword-resilience': 'Resiliencia',
+        'keyword-commitment': 'Compromiso',
+        'keyword-efficiency': 'Eficiencia'
     }
 };
 
 let currentLanguage = 'en';
-let originalContent = {};
-
-// Cache original English content from HTML
-function cacheOriginalContent() {
-    document.querySelectorAll('[data-translate]').forEach(element => {
-        const key = element.getAttribute('data-translate');
-        originalContent[key] = element.innerHTML;
-    });
-}
 
 // Detect browser language
 function detectLanguage() {
@@ -122,55 +123,23 @@ function detectLanguage() {
     return 'en';
 }
 
-// Switch language function
+// REEMPLAZA LA FUNCIÓN switchLanguage CON ESTA VERSIÓN
 function switchLanguage(lang) {
     currentLanguage = lang;
     
     // Update active buttons
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-    document.getElementById('lang-' + lang).classList.add('active');
-    document.getElementById('mobile-lang-' + lang).classList.add('active');
+    document.getElementById('lang-' + lang)?.classList.add('active');
+    document.getElementById('mobile-lang-' + lang)?.classList.add('active');
     
     // Update all translatable elements
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
         
-        if (lang === 'en') {
-            // Restore original English content
-            if (originalContent[key]) {
-                element.innerHTML = originalContent[key];
-            }
-        } else if (translations[lang] && translations[lang][key]) {
-            // Apply translation for other languages
+        if (translations[lang] && translations[lang][key]) {
             element.innerHTML = translations[lang][key];
         }
     });
-
-    // Apply highlights to hero title
-    applyHeroHighlights();
-
-    // Store preference (would use localStorage in real implementation)
-    // For artifacts, we'll just keep it in memory
-}
-
-// Function to apply highlight classes to hero title keywords
-function applyHeroHighlights() {
-    const heroTitle = document.querySelector('.hero h1[data-translate="hero-title"]');
-    if (!heroTitle) return;
-    
-    let text = heroTitle.textContent;
-    
-    if (currentLanguage === 'es') {
-        // Spanish: highlight "tiempo" and "potencial único"
-        text = text.replace(/(tiempo)/gi, '<span class="highlight">$1</span>');
-        text = text.replace(/(potencial único)/gi, '<span class="highlight">$1</span>');
-    } else {
-        // English: highlight "time" and "unique potential"
-        text = text.replace(/(time)/gi, '<span class="highlight">$1</span>');
-        text = text.replace(/(unique potential)/gi, '<span class="highlight">$1</span>');
-    }
-    
-    heroTitle.innerHTML = text;
 }
 
 // Initialize language on page load
@@ -221,6 +190,34 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Initialize language when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    cacheOriginalContent(); // Cache English content first
+    // Ya no se necesita cacheOriginalContent();
     initializeLanguage();
+    initializeTagCloud();
 });
+
+function initializeTagCloud() {
+    const visualContainer = document.querySelector('#empowered-team .benefit-visual');
+    const tagCloud = document.querySelector('.tag-cloud-wrapper');
+
+    if (!visualContainer || !tagCloud) return;
+
+    const maxRotate = 10; // Grados máximos de rotación
+
+    visualContainer.addEventListener('mousemove', (e) => {
+        const rect = visualContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const mouseX = (x / rect.width) * 2 - 1; // -1 a 1
+        const mouseY = (y / rect.height) * 2 - 1; // -1 a 1
+
+        const rotateX = -mouseY * maxRotate;
+        const rotateY = mouseX * maxRotate;
+
+        tagCloud.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    visualContainer.addEventListener('mouseleave', () => {
+        tagCloud.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+}

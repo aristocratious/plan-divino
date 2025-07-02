@@ -586,6 +586,12 @@ header {
     margin-bottom: 2rem;
     position: relative;
 }
+
+/* Añade esta nueva regla para unificar el estilo de los títulos principales */
+.philosophy-header .section-title {
+    font-size: 2.8rem;
+    text-shadow: 0 2px 10px rgba(0, 82, 204, 0.1);
+}
 .section-tag {
     display: inline-block;
     background: rgba(0, 82, 204, 0.1);
@@ -1754,169 +1760,524 @@ footer {
     animation: pulse 6s ease-in-out infinite;
 } */
 
-/* AI Assistant Section */
+/* AI Assistant Section - Estilos base (sobrescritos por el tema oscuro) */
 #ai-assistant-section {
-    background: var(--background);
-    padding: 6rem 0;
+    background: var(--background); /* <-- ESTA LÍNEA SOLUCIONA TODO */
+    padding-bottom: 8rem;
+    position: relative; /* Buena práctica al ajustar fondos y márgenes */
 }
 
-.assistant-header {
+#ai-assistant-section .assistant-header {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem; /* Espacio reducido */
 }
 
-.assistant-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: center;
-}
-
-.assistant-left-col .assistant-description {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
+/* AJUSTE: Aplicar el mismo estilo de fuente que el bloque 2 */
+#ai-assistant-section .section-subtitle {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 1.3rem;
     line-height: 1.7;
-    margin-bottom: 2rem;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
 }
 
-.icon-cloud-container {
-    width: 100%;
-    height: 400px;
+.portal-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 250px;
+    padding-top: 2rem; /* Padding superior reducido */
+}
+
+.portal-cta {
     position: relative;
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 10px 40px rgba(86, 66, 234, 0.4);
     overflow: hidden;
-    border-radius: 20px;
-    background: var(--surface);
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+    border: 2px solid rgba(255, 255, 255, 0.15); /* Borde más sutil */
+}
+
+/* Pseudo-elemento para el fondo de gradiente animado */
+.portal-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 250%; /* Más grande para que el gradiente tenga más recorrido */
+    height: 250%;
+    /* AJUSTE: Nueva paleta de colores más vivos */
+    background: linear-gradient(160deg, #667eea, #764ba2, #f093fb, #4facfe, #00f2fe);
+    /* AJUSTE: Animación más lenta */
+    animation: gradient-shift 8s infinite linear;
+    filter: blur(25px);
+}
+
+@keyframes gradient-shift {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* SUGERENCIA EXTRA: Pseudo-elemento para el efecto de brillo en hover */
+.portal-cta::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -100%;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: skewX(-25deg);
+    transition: left 0.6s ease;
+}
+
+.portal-cta:hover {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 20px 50px rgba(86, 66, 234, 0.5);
+}
+
+/* Al hacer hover, movemos el brillo para que cruce el botón */
+.portal-cta:hover::after {
+    left: 100%;
+}
+
+.portal-text {
+    position: relative;
+    z-index: 2;
+    padding: 1.5rem;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3); /* Sombra para mejor legibilidad */
+}
+
+/* Los orbes que orbitan ahora son opcionales, pero los mantenemos estilizados */
+.portal-orb {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    z-index: 1;
+    animation: orbit 10s linear infinite; /* Animación más lenta */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Hacemos visibles los orbes solo en el hover para no sobrecargar */
+.portal-cta:hover .portal-orb {
+    opacity: 1;
+}
+
+.portal-orb-1 {
+    width: 15px;
+    height: 15px;
+    margin: -7.5px;
+    animation-delay: 0s;
+}
+
+.portal-orb-2 {
+    width: 8px;
+    height: 8px;
+    margin: -4px;
+    animation-delay: -5s;
+}
+
+@keyframes orbit {
+    from { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+    to { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
+}
+
+/* Estilos para la sección Conecta tu Ecosistema (Bloque 4) */
+.connect-ecosystem-section {
+    padding: 6rem 0;
+    background: var(--background); /* Asegura fondo blanco */
+}
+
+.connect-ecosystem-section .container {
+    max-width: 960px; /* Limita el ancho del contenido */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.connect-ecosystem-section .section-subtitle {
+    margin-bottom: 3rem;
+}
+
+/* Reactiva y ajusta los estilos de los iconos flotantes */
+.icon-cloud-container {
+    position: relative;
+    width: 100%;
+    height: 300px; /* Reducimos un poco la altura para este bloque */
+    border-radius: 15px;
+    background: rgba(204, 218, 238, 0.15); /* Un fondo muy suave */
+    overflow: hidden;
 }
 
 .icon-logo {
     position: absolute;
-    width: 55px;
-    height: 55px;
+    width: 45px; /* Un poco más pequeños */
+    height: 45px;
     transition: transform 0.3s ease;
-    animation: float 8s ease-in-out infinite;
+    animation: float 7s ease-in-out infinite; /* Ajustamos velocidad */
 }
 
 .icon-logo:hover {
-    transform: scale(1.2) !important; /* Usamos !important para sobreescribir la animación */
-    animation-play-state: paused; /* Pausamos la animación al pasar el ratón */
-    z-index: 100; /* Nos aseguramos de que el icono con hover esté por encima de los demás */
+    transform: scale(1.1) !important;
+    animation-play-state: paused;
 }
 
-/* Keyframes para la animación de flotar */
 @keyframes float {
     0% { transform: translateY(0px) translateX(0px) rotate(0deg); }
-    25% { transform: translateY(-15px) translateX(10px) rotate(5deg); }
-    50% { transform: translateY(0px) translateX(-10px) rotate(-5deg); }
-    75% { transform: translateY(15px) translateX(10px) rotate(10deg); }
+    25% { transform: translateY(-8px) translateX(4px) rotate(3deg); }
+    50% { transform: translateY(0px) translateX(-4px) rotate(0deg); }
+    75% { transform: translateY(8px) translateX(4px) rotate(-3deg); }
     100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
 }
 
-/* Posiciones y delays de animación únicos para cada icono */
-.icon-logo:nth-child(1) { top: 10%; left: 15%; animation-delay: 0s; animation-duration: 8s; }
-.icon-logo:nth-child(2) { top: 20%; left: 70%; animation-delay: -2s; animation-duration: 9s; }
-.icon-logo:nth-child(3) { top: 60%; left: 80%; animation-delay: -5s; animation-duration: 7s; }
-.icon-logo:nth-child(4) { top: 70%; left: 10%; animation-delay: -3s; animation-duration: 8.5s; }
-.icon-logo:nth-child(5) { top: 40%; left: 45%; animation-delay: -7s; animation-duration: 9.5s; }
-.icon-logo:nth-child(6) { top: 80%; left: 50%; animation-delay: -1s; animation-duration: 7.5s; }
-.icon-logo:nth-child(7) { top: 5%; left: 40%; animation-delay: -4s; animation-duration: 8s; }
-.icon-logo:nth-child(8) { top: 50%; left: 20%; animation-delay: -6s; animation-duration: 9s; }
-.icon-logo:nth-child(9) { top: 85%; left: 25%; animation-delay: -2.5s; animation-duration: 7s; }
-.icon-logo:nth-child(10) { top: 15%; left: 90%; animation-delay: -4.5s; animation-duration: 8.5s; }
-.icon-logo:nth-child(11) { top: 45%; left: 5%; animation-delay: -1.5s; animation-duration: 9.5s; }
-.icon-logo:nth-child(12) { top: 65%; left: 60%; animation-delay: -5.5s; animation-duration: 8s; }
+/* Reposicionamiento de los iconos para el Bloque 4 (ajusta según necesites) */
+.icon-logo:nth-child(1) { top: 10%; left: 15%; animation-delay: 0.5s; animation-duration: 7s; }
+.icon-logo:nth-child(2) { top: 25%; left: 75%; animation-delay: -1s; animation-duration: 8s; }
+.icon-logo:nth-child(3) { top: 65%; left: 85%; animation-delay: -3s; animation-duration: 6.5s; }
+.icon-logo:nth-child(4) { top: 75%; left: 10%; animation-delay: -2s; animation-duration: 7.5s; }
+.icon-logo:nth-child(5) { top: 45%; left: 40%; animation-delay: -4s; animation-duration: 8.5s; }
+.icon-logo:nth-child(6) { top: 85%; left: 55%; animation-delay: -0.5s; animation-duration: 6.8s; }
+.icon-logo:nth-child(7) { top: 5%; left: 45%; animation-delay: -2.5s; animation-duration: 7.2s; }
+.icon-logo:nth-child(8) { top: 55%; left: 20%; animation-delay: -5s; animation-duration: 8s; }
+.icon-logo:nth-child(9) { top: 80%; left: 25%; animation-delay: -1.5s; animation-duration: 6.5s; }
+.icon-logo:nth-child(10) { top: 20%; left: 90%; animation-delay: -3.5s; animation-duration: 7.8s; }
+.icon-logo:nth-child(11) { top: 35%; left: 5%; animation-delay: -0s; animation-duration: 8.2s; }
+.icon-logo:nth-child(12) { top: 60%; left: 65%; animation-delay: -4.5s; animation-duration: 7s; }
 
-.form-container {
-    background: var(--surface);
-    padding: 2.5rem;
-    border-radius: 20px;
-    border: 1px solid var(--border);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+/* --- Estilos para la transformación del Bloque 3 a Tema Oscuro --- */
+
+/* Paso 1: Aplicar el fondo oscuro a la sección principal */
+#ai-assistant-section {
+    position: relative; /* Necesario para los divisores absolutos */
+    background: var(--text-primary); /* Usamos el color de texto principal como fondo oscuro */
+    padding-top: 8rem; /* Aumentamos el padding para dar espacio a la curva superior */
+    padding-bottom: 12rem; /* Aumentamos el padding para dar espacio a la curva inferior */
 }
 
-.form-group {
-    margin-bottom: 1.5rem;
+/* Paso 2: Cambiar el color de los textos a blanco */
+#ai-assistant-section .section-title--gradient {
+    /* Creamos un nuevo gradiente para fondo oscuro */
+    background: linear-gradient(135deg, #FFFFFF 60%, #90b8f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
 }
 
-.form-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-    color: var(--text-primary);
+#ai-assistant-section .section-subtitle {
+    color: rgba(255, 255, 255, 0.8); /* Blanco con un poco de transparencia */
 }
 
-.form-group input[type="text"],
-.form-group input[type="email"] {
+/* El texto del portal ya es blanco, así que no necesita cambios. */
+
+/* Paso 3: Estilos para los Divisores de Forma (Shape Dividers) */
+.shape-divider {
+    position: absolute;
+    left: 0;
     width: 100%;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.2s;
+    overflow: hidden;
+    line-height: 0;
 }
 
-.form-group input[type="text"]:focus,
-.form-group input[type="email"]:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(0, 82, 204, 0.15);
+.shape-divider.shape-top {
+    top: -1px; /* Lo pegamos al borde superior */
 }
 
-.form-group-checkbox {
-    display: flex;
+.shape-divider.shape-bottom {
+    bottom: -1px; /* Lo pegamos al borde inferior */
+}
+
+.shape-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 100px; /* Altura de la curva */
+}
+
+/* El color del SVG debe coincidir con el fondo de la sección adyacente */
+.shape-divider .shape-fill {
+    fill: var(--background); /* Rellenamos la curva con el color blanco */
+}
+
+/* Estilos adicionales para mejorar la apariencia en tema oscuro */
+#ai-assistant-section .portal-container {
+    position: relative;
+    z-index: 2; /* Asegurar que esté por encima de los divisores */
+}
+
+/* Mejorar el contraste del portal en fondo oscuro */
+#ai-assistant-section .portal-cta {
+    box-shadow: 0 10px 40px rgba(86, 66, 234, 0.6), 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+#ai-assistant-section .portal-cta:hover {
+    box-shadow: 0 20px 50px rgba(86, 66, 234, 0.7), 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive para los divisores de forma */
+@media (max-width: 768px) {
+    .shape-divider svg {
+        height: 60px; /* Curvas más pequeñas en móvil */
+    }
+    
+    #ai-assistant-section {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+}
+
+/* --- Estilos para los Bloques de Beneficios (4, 5, 6) --- */
+
+/* Estilo para el Título-Puente */
+.benefits-intro {
+    text-align: center;
+    padding: 6rem 0 2rem; /* padding-bottom reducido */
+    background: var(--background);
+}
+
+.benefits-intro .section-title {
+    margin-bottom: 1rem;
+    font-size: 2.8rem; /* Tamaño aumentado */
+    text-shadow: 0 2px 10px rgba(0, 82, 204, 0.1); /* Sombra sutil */
+}
+
+.benefits-intro .section-subtitle {
+    font-size: 1.3rem;
+    color: rgba(0,0,0,0.7);
+}
+
+/* Estructura base para los bloques de beneficio */
+.benefit-block {
+    padding: 3rem 0 6rem; /* padding-top reducido */
+    overflow: hidden;
+}
+.benefit-block:nth-child(even) { /* Intercalar color de fondo */
+    background: var(--surface);
+}
+.benefit-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
     align-items: center;
-    gap: 0.75rem;
+}
+.benefit-container.reversed {
+    grid-template-columns: 1fr 1fr; /* Mantenemos el orden en HTML, lo cambiamos en CSS */
+}
+.benefit-container.reversed .benefit-text {
+    order: 2;
+}
+.benefit-container.reversed .benefit-visual {
+    order: 1;
+}
+
+.benefit-text .benefit-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--primary); /* Cambiado a color primario */
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+}
+.benefit-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
 }
-
-.form-group-checkbox input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    accent-color: var(--primary);
+.benefit-list {
+    list-style: none;
+    padding: 0;
+}
+.benefit-list li {
+    display: flex;
+    align-items: center; /* Mejor alineación vertical */
+    margin-bottom: 1.2rem; /* Más espacio entre ítems */
+    color: var(--text-primary);
+    font-weight: 500;
+    font-size: 1.1rem; /* Tamaño de fuente aumentado */
+}
+.benefit-list li::before {
+    content: ''; /* Quitamos el carácter de texto */
+    display: inline-block;
+    flex-shrink: 0;
+    width: 24px; /* Tamaño del icono */
+    height: 24px;
+    margin-right: 0.8rem;
+    /* Usamos un SVG como máscara para poder colorearlo */
+    background-color: var(--accent); /* Color verde de acento */
+    mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
 }
 
-.form-container .cta-button {
-    width: 100%;
-    background: var(--primary);
-    color: white;
-    padding: 1rem;
+/* Ajuste para el contenedor de iconos en Bloque 4 */
+#connect-ecosystem .icon-cloud-container {
+    padding: 0; /* Quitamos el padding para que floten libremente */
+    height: 450px; /* Le damos más altura */
+    background: transparent; /* Eliminamos el fondo de la caja */
+    border-radius: 0;
+    box-shadow: none;
     border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
+}
+
+
+
+/* Orbe de Propósito para Bloque 6 */
+.purpose-orb-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+.purpose-orb {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(147, 51, 234, 0.2) 0%, rgba(59, 130, 246, 0.1) 50%, transparent 70%);
+    animation: slow-pulse 8s ease-in-out infinite;
+}
+.purpose-orb::before, .purpose-orb::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(236, 72, 153, 0.1) 0%, transparent 60%);
+    animation: slow-rotate 20s linear infinite;
+}
+.purpose-orb::after {
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 65%);
+    animation-direction: reverse;
+    animation-duration: 25s;
+}
+
+@keyframes slow-pulse {
+    0%, 100% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1); opacity: 1; }
+}
+@keyframes slow-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Estilos para el CTA Final */
+.final-cta-section {
+    background: var(--text-primary);
+    padding: 6rem 0;
+    text-align: center;
+}
+.final-cta-button {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 1.2rem 3rem;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 1.3rem;
     font-weight: 600;
-    cursor: pointer;
     transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 8px 30px rgba(0, 82, 204, 0.4);
+}
+.final-cta-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 40px rgba(0, 82, 204, 0.5);
 }
 
-.form-container .cta-button:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 82, 204, 0.25);
-}
-
-/* Responsive */
+/* Responsive para los nuevos bloques */
 @media (max-width: 900px) {
-    .assistant-content {
+    .benefit-container, .benefit-container.reversed {
         grid-template-columns: 1fr;
     }
-    .assistant-left-col {
+    .benefit-container.reversed .benefit-text {
+        order: 1; /* Resetear orden en móvil */
+    }
+    .benefit-container.reversed .benefit-visual {
         order: 2;
     }
-    .assistant-right-col {
-        order: 1;
+    .benefit-visual {
+        margin-top: 3rem;
     }
 }
 
-/* AJUSTE 2: Oscurecer el subtítulo de la nueva sección */
-#ai-assistant-section .section-subtitle {
-    color: rgba(0, 0, 0, 0.7);
+/* --- Estilos para la Nube de Tags Interactiva (Bloque 5) --- */
+
+.benefit-visual {
+    perspective: 1000px; /* Crea el espacio 3D para la interacción */
+    min-height: 400px;
 }
 
-/* AJUSTE 3: Estilos para el nuevo título de la columna izquierda */
-.assistant-left-col h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
+.tag-cloud-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Altura fija para que las posiciones absolutas funcionen */
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1); /* Transición suave al salir */
 }
+
+.tag-item {
+    position: absolute;
+    display: block;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    background: rgba(248, 249, 250, 0.9); /* Fondo más opaco */
+    transition: all 0.3s ease;
+    animation: subtle-float 6s ease-in-out infinite;
+    white-space: nowrap;
+    z-index: 1; /* Asegurar que estén por encima */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+}
+
+.tag-item:hover {
+    transform: scale(1.1) translateZ(20px) !important;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 10;
+    animation-play-state: paused;
+}
+
+.tag-prominent {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--primary);
+    border: 1px solid rgba(0, 82, 204, 0.2);
+}
+
+.tag-secondary {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+@keyframes subtle-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* Posiciones y delays únicos para cada palabra */
+.tag-item:nth-child(1) { top: 20%; left: 30%; animation-delay: -1s; }
+.tag-item:nth-child(2) { top: 60%; left: 50%; animation-delay: -3s; }
+.tag-item:nth-child(3) { top: 10%; left: 65%; animation-delay: -5s; }
+.tag-item:nth-child(4) { top: 80%; left: 20%; animation-delay: -2s; }
+.tag-item:nth-child(5) { top: 45%; left: 10%; animation-delay: -4s; }
+.tag-item:nth-child(6) { top: 5%; left: 5%; animation-delay: -6s; }
+.tag-item:nth-child(7) { top: 75%; left: 75%; animation-delay: -1.5s; }
+.tag-item:nth-child(8) { top: 90%; left: 45%; animation-delay: -3.5s; }
+.tag-item:nth-child(9) { top: 35%; left: 80%; animation-delay: -5.5s; }
+.tag-item:nth-child(10) { top: 55%; left: 0%; animation-delay: -2.5s; }
 
