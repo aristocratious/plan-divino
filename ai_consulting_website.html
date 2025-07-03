@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collective Intelligence Consulting</title>
+    <title>SynchroLabs</title>
     <style>
         * {
             margin: 0;
@@ -579,7 +579,7 @@
     <header>
         <nav class="container">
             <div class="nav">
-                <div class="logo">Collective Intelligence</div>
+                <div class="logo">SynchroLabs</div>
                 <div class="nav-links">
                     <a href="#philosophy" class="nav-link" data-translate="nav-why">Why We Exist</a>
                     <a href="#services" class="nav-link" data-translate="nav-what">What We Do</a>
@@ -774,7 +774,7 @@
 
     <footer>
         <div class="container">
-            <p data-translate="footer-text">&copy; 2024 Collective Intelligence Consulting. Human-centered AI for purpose-driven organizations.</p>
+            <p data-translate="footer-text" id="footer-text">&copy; 2025 SynchroLabs. Human-centered AI for purpose-driven organizations.</p>
         </div>
     </footer>
 
@@ -783,6 +783,11 @@
     </div>
 
     <script>
+        // Function to get current year dynamically
+        function getCurrentYear() {
+            return new Date().getFullYear();
+        }
+
         // Translation system
         const translations = {
             en: {
@@ -847,7 +852,7 @@
                 'cta-title': 'Ready to Get Started?',
                 'cta-desc': 'Talk to our AI assistant first—it will ask a few questions about your organization and connect you with the right person on our team.',
                 'cta-button': 'Chat with Our AI Assistant',
-                'footer-text': '© 2024 Collective Intelligence Consulting. Human-centered AI for purpose-driven organizations.',
+                'footer-text': `© ${getCurrentYear()} SynchroLabs. Human-centered AI for purpose-driven organizations.`,
                 'chat-widget': '💬 Chat Now'
             },
             es: {
@@ -912,7 +917,7 @@
                 'cta-title': '¿Listo para Comenzar?',
                 'cta-desc': 'Hable primero con nuestro asistente de IA—hará algunas preguntas sobre su organización y lo conectará con la persona adecuada en nuestro equipo.',
                 'cta-button': 'Chatear con Nuestro Asistente de IA',
-                'footer-text': '© 2024 Collective Intelligence Consulting. IA centrada en el ser humano para organizaciones con propósito.',
+                'footer-text': `© ${getCurrentYear()} SynchroLabs. IA centrada en el ser humano para organizaciones con propósito.`,
                 'chat-widget': '💬 Chatear Ahora'
             }
         };

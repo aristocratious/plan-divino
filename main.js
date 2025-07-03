@@ -1,4 +1,10 @@
 // REEMPLAZA EL OBJETO translations COMPLETO CON ESTA VERSIÓN
+
+// Function to get current year dynamically
+function getCurrentYear() {
+    return new Date().getFullYear();
+}
+
 const translations = {
     en: {
         'nav-what': 'What We Do',
@@ -42,7 +48,7 @@ const translations = {
         'benefit3-point2': 'Reduced burnout and increased resilience.',
         'benefit3-point3': 'Shared purpose-driven organizational culture.',
         'final-cta': 'I\'m Ready to Start My Transformation',
-        'footer-text': '&copy; 2024 Collective Intelligence Consulting. Human-centered AI for purpose-driven organizations.',
+        'footer-text': `&copy; ${getCurrentYear()} SynchroLabs. Human-centered AI for purpose-driven organizations.`,
         'chat-widget': '💬 Chat Now',
         'keyword-strategy': 'Strategy',
         'keyword-creativity': 'Creativity',
@@ -97,7 +103,7 @@ const translations = {
         'benefit3-point2': 'Reducción del burnout y aumento de la resiliencia.',
         'benefit3-point3': 'Cultura organizacional con un propósito compartido.',
         'final-cta': 'Estoy Listo para Iniciar mi Transformación',
-        'footer-text': '&copy; 2024 Collective Intelligence Consulting. IA centrada en el ser humano para organizaciones con propósito.',
+        'footer-text': `&copy; ${getCurrentYear()} SynchroLabs. IA centrada en el ser humano para organizaciones con propósito.`,
         'chat-widget': '💬 Chatear Ahora',
         'keyword-strategy': 'Estrategia',
         'keyword-creativity': 'Creatividad',
@@ -146,6 +152,12 @@ function switchLanguage(lang) {
 function initializeLanguage() {
     const detectedLang = detectLanguage();
     switchLanguage(detectedLang);
+    
+    // Update copyright year in footer
+    const copyrightYear = document.getElementById('copyright-year');
+    if (copyrightYear) {
+        copyrightYear.textContent = getCurrentYear();
+    }
 }
 
 function openChat() {
