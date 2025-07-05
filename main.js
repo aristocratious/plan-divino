@@ -7,9 +7,11 @@ function getCurrentYear() {
 
 const translations = {
     en: {
-        'nav-what': 'What We Do',
-        'nav-how': 'How We Work',
-        'nav-cta': 'Get Started',
+        'nav-philosophy': 'Philosophy',
+        'nav-services': 'Services',
+        'nav-process': 'Process',
+        'nav-about': 'About',
+        'nav-cta': 'Start Assessment',
         'hero-title': 'We free up your <span class="highlight">time</span> so you can focus on your <span class="highlight">unique potential</span>.',
         'hero-subtitle': 'We design and implement people-centered <strong>Artificial Intelligence</strong> solutions, accompanying individuals and organizations toward the new era of Human-AI collaboration.',
         'hero-cta': 'Discover How',
@@ -47,8 +49,26 @@ const translations = {
         'benefit3-point1': 'Alignment of work with personal values.',
         'benefit3-point2': 'Reduced burnout and increased resilience.',
         'benefit3-point3': 'Shared purpose-driven organizational culture.',
-        'final-cta': 'I\'m Ready to Start My Transformation',
-        'footer-text': `&copy; ${getCurrentYear()} SynchroLabs. Human-centered AI for purpose-driven organizations.`,
+        'final-cta': '<span>I\'m Ready to Start My Transformation</span>',
+        'footer-tagline': 'Synchronizing Human Potential with AI',
+        'footer-copyright': '&copy; 2025 SynchroLabs. All rights reserved.',
+        'footer-nav-title': 'Navigation',
+        'footer-philosophy': 'Philosophy',
+        'footer-services': 'Services',
+        'footer-process': 'Process',
+        'footer-about': 'About Us',
+        'footer-privacy': 'Privacy Policy',
+        'footer-services-title': 'Our Services',
+        'footer-service1': 'AI Strategy & Implementation',
+        'footer-service2': 'Team Training & Empowerment',
+        'footer-service3': 'Human-AI Collaboration',
+        'footer-service4': 'Purpose Alignment Consulting',
+        'footer-connect-title': 'Connect With Us',
+        'footer-assessment': 'AI Assessment Tool',
+        'newsletter-title': 'Stay Updated',
+        'newsletter-placeholder': 'your@email.com',
+        'newsletter-button': 'Subscribe',
+        'newsletter-note': 'Monthly insights on AI & human potential',
         'chat-widget': '💬 Chat Now',
         'keyword-strategy': 'Strategy',
         'keyword-creativity': 'Creativity',
@@ -62,9 +82,11 @@ const translations = {
         'keyword-efficiency': 'Efficiency'
     },
     es: {
-        'nav-what': 'Qué Hacemos',
-        'nav-how': 'Cómo Trabajamos',
-        'nav-cta': 'Comenzar',
+        'nav-philosophy': 'Filosofía',
+        'nav-services': 'Servicios',
+        'nav-process': 'Proceso',
+        'nav-about': 'Nosotros',
+        'nav-cta': 'Iniciar Evaluación',
         'hero-title': 'Liberamos tu <span class="highlight">tiempo</span> para que puedas enfocarte en tu <span class="highlight">potencial único</span>.',
         'hero-subtitle': 'Diseñamos e implementamos <strong>Inteligencia Artificial</strong> centradas en las personas, acompañando a individuos y organizaciones hacia la nueva era de la colaboración Humano-IA.',
         'hero-cta': 'Descubre como',
@@ -102,8 +124,26 @@ const translations = {
         'benefit3-point1': 'Alineación del trabajo con los valores personales.',
         'benefit3-point2': 'Reducción del burnout y aumento de la resiliencia.',
         'benefit3-point3': 'Cultura organizacional con un propósito compartido.',
-        'final-cta': 'Estoy Listo para Iniciar mi Transformación',
-        'footer-text': `&copy; ${getCurrentYear()} SynchroLabs. IA centrada en el ser humano para organizaciones con propósito.`,
+        'final-cta': '<span>Estoy Listo para Iniciar mi Transformación</span>',
+        'footer-tagline': 'Sincronizando el Potencial Humano con IA',
+        'footer-copyright': '&copy; 2025 SynchroLabs. Todos los derechos reservados.',
+        'footer-nav-title': 'Navegación',
+        'footer-philosophy': 'Filosofía',
+        'footer-services': 'Servicios',
+        'footer-process': 'Proceso',
+        'footer-about': 'Nosotros',
+        'footer-privacy': 'Política de Privacidad',
+        'footer-services-title': 'Nuestros Servicios',
+        'footer-service1': 'Estrategia e Implementación de IA',
+        'footer-service2': 'Entrenamiento y Empoderamiento de Equipos',
+        'footer-service3': 'Colaboración Humano-IA',
+        'footer-service4': 'Consultoría de Alineación con Propósito',
+        'footer-connect-title': 'Conecta Con Nosotros',
+        'footer-assessment': 'Herramienta de Evaluación IA',
+        'newsletter-title': 'Mantente Actualizado',
+        'newsletter-placeholder': 'tu@email.com',
+        'newsletter-button': 'Suscribirse',
+        'newsletter-note': 'Insights mensuales sobre IA y potencial humano',
         'chat-widget': '💬 Chatear Ahora',
         'keyword-strategy': 'Estrategia',
         'keyword-creativity': 'Creatividad',
@@ -205,6 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ya no se necesita cacheOriginalContent();
     initializeLanguage();
     initializeTagCloud();
+    initializeNewsletter();
 });
 
 function initializeTagCloud() {
@@ -232,4 +273,23 @@ function initializeTagCloud() {
     visualContainer.addEventListener('mouseleave', () => {
         tagCloud.style.transform = 'rotateX(0deg) rotateY(0deg)';
     });
+}
+
+// Newsletter signup handler
+function initializeNewsletter() {
+    const newsletterForm = document.querySelector('.newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            
+            // Placeholder functionality - replace with real service
+            alert(currentLanguage === 'en' 
+                ? `Thanks! We'll send updates to ${email}` 
+                : `¡Gracias! Enviaremos actualizaciones a ${email}`
+            );
+            
+            this.reset();
+        });
+    }
 }
